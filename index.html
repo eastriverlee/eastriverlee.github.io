@@ -1,129 +1,46 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" charset="utf-8">
-	<title>
-		동녘 강의 오늘
-	</title>
-	<style>
-		body {
-			font-family: "menlo", monospace;
-			margin: 2%;
-			min-width: 594px;
-			padding-bottom: 40px;
-		}
-		h1 {
-			background-color: black;
-			color: white;
-			padding: 8px;
-			padding-bottom: 20px;
-			margin-bottom: 0px;
-		}
-		p {
-			padding-right: 20px;
-		}
-		a {
-			text-decoration: none;
-		}
-		ul#tab {
-			background: none;
-			margin: 0px;
-			padding: 0px;
-			list-style: none;
-			overflow: hidden;
-		}
-		ul#tab li {
-			float: left;
-			padding: 0px;
-			margin: 0px;
-			width: calc(100% / 3);
-		}
-		ul#tab li a {
-			text-align: center;
-			padding: 8px;
-			background-color: black;
-			color: white;
-			display: block;
-		}
-		ul#tab li a:hover {
-			background-color: rgb(204, 204, 204);
-			color: rgb(18, 18, 18);
-		}
-		ul#tab li a#selected {
-			background-color: white;
-			color: black;
-		}
-		ul#tab li a#selected:hover {
-			background-color: rgb(204, 204, 204);
-			color: rgb(18, 18, 18);
-		}	
-		.em {
-			background-color: rgb(204, 18, 18);
-			color: white;
-			padding: 4px;
-		}
-		#footer {
-			padding: 8px;
-			bottom: 0;
-			margin-bottom: 0;
-			left: 0;
-			width: 100%;
-			min-width: 610px;
-			position: fixed;
-			background-color: rgb(18, 18, 204);
-			color: rgb(0, 180, 200);
-		}
-		iframe {
-			float: right;
-			margin-left: 16px;
-			margin-right: 0;
-			margin-bottom: 40px;
-			margin-top: 4px;
-			bottom: 0;
-			padding: 16px;
-			height: 33vw;
-			width: 33vw;
-			background-color: black;
-		}
-		div {
-			height: 50vh;
-		}
-	</style>
-</head>
-	<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+	<head>
+		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" charset="utf-8">
+		<title>
+			동녘 강의 오늘
+		</title>
+		<link rel="stylesheet" href="style.css"/>
+	</head>
+	<body oncontextmenu="false" ondragstart="false" onselectstart="false">
 		<a href="https://eastriver.today"><h1>
-			hello world, this is an eastriver's today.<br>
-		</h1></a>
-		<ul id="tab">
-			<li><a id= "selected" href="https://eastriver.today">
-				intro
-			</a></li>
-			<li><a href="https://eastriver.today/writings.html">
-				writings
-			</a></li>
-			<li><a href="https://eastriver.today/works.html">
-				works
-			</a></li>
-		</ul>
-		<div>
-		<iframe src="https://eastriver.today/ascii.html" scrolling=no frameborder=no align="middle"></iframe>
-		<p>
-			there is not much to say, <span class="em">really</span>.<br>
-			<br>
-			i do code, art, write, design, box, and all the other stuffs except for socializing.<br>
-			my favorite games are: exapunks, grim fandango, the curse of monkey island, timbleweed park, ftl, sonic mania, i love katamari.<br>
-			my favorite bands/musicians are: the beatles, sunny day service, goonamgwayeoridingstella, sunset rollercoaster, amy winehouse, bitgwasoeum, sanulim, adoy.<br>
-			my favorite writers are: solmoe park, romain gary, jerome salinger, david van.<br>
-			my favorite movies are: pulp fiction, face off, whiplash, burning, parasite, garden state.<br>
-			my favorite animations are: futurama, bob's bergers, the simpsons, rick and morty.<br>
-			my favorite sites are: khan academy, coursera, stack-overflow, kyobobooks.<br>
-			my favorite programming languages are: swift, c.<br>
-			i dream about: extinction of wars, people reading, conquer of death, water disalination, basic income.<br><br>
-			i was born twenty-six years after when there was a giant leap for mankind.<br><br><br>	
-		</p>
-		</div>
-		<p id="footer">
+				hello world, this is an eastriver's today.<br>
+			</h1></a>
+			<ul id="tab">
+				<li><a id="selected" href="https://eastriver.today">
+					intro
+				</a></li>
+				<li><a href="https://eastriver.today/writings.html">
+					writings
+				</a></li>
+				<li><a href="https://eastriver.today/works.html">
+					works
+				</a></li>
+			</ul>
+			<div>
+				<iframe class="ascii" src="https://eastriver.today/ascii.html" scrolling=no frameborder=no align="middle"></iframe>
+				<p>
+				there is not much to say, <span class="em">really</span>.<br>
+				<br>
+				i do code, art, write, design, box, and all the other stuffs except for socializing.<br>
+				my favorite games are: exapunks, grim fandango, the curse of monkey island, timbleweed park, ftl, sonic mania, i love katamari.<br>
+				my favorite bands/musicians are: the beatles, sunny day service, goonamgwayeoridingstella, sunset rollercoaster, amy winehouse, bitgwasoeum, wedance.<br>
+				my favorite writers are: solmoe park, romain gary, jerome salinger, david van.<br>
+				my favorite movies are: pulp fiction, face off, whiplash, burning, parasite, garden state.<br>
+				my favorite animations are: futurama, bob's bergers, the simpsons, rick and morty.<br>
+				my favorite sites are: khan academy, coursera, stack-overflow, kyobobooks.<br>
+				my favorite programming languages are: swift, c, go.<br>
+				i dream about: extinction of wars, people reading, conquer of death, water disalination, basic income.<br><br>
+				i was born twenty-six years after when there was a giant leap for mankind.<br><br><br>	
+				</p>
+			</div>
+			<p id="footer">
 			this site was made in vim.<br>
-		</p>
+			</p>
 	</body>
 </html>
