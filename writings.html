@@ -1,35 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-	<title>
-		동녘 강의 오늘
-	</title>
-	<link rel="stylesheet" href="style.css"/>
+	<head>
+		<script type="text/javascript" src="ui.js"></script>
+		<meta charset="utf-8">
+		<title>
+			동녘 강의 오늘
+		</title>
+		<link rel="stylesheet" href="style.css"/>
 	</head>
 	<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
 		<a href="http://eastriver.today"><h1>
-			hello world, this is an eastriver's today.<br>
-		</h1></a>
-		<ul id="tab">
-			<li><a href="http://eastriver.today">
-				intro
-			</a></li>
-			<li><a id="selected" href="http://eastriver.today/writings.html">
-				writings
-			</a></li>
-			<li><a href="http://eastriver.today/works.html">
-				works
-			</a></li>
-		</ul>
-		<p id="content"></p>
-		<script>
-			fetch("writing")
-				.then(response => response.text())
-				.then(text => document.getElementById('content').innerHTML= text)
-		</script>
-		<p id="footer">
+				hello world, this is an eastriver's today.<br>
+			</h1></a>
+			<ul id="tab"></ul><script>select(1)</script>
+			<p id="content"></p>
+			<script>
+				fetch("writing")
+					.then(response => response.text())
+					.then(text => document.getElementById('content').innerHTML= text)
+			</script>
+			<p id="footer">
 			this site was made in vim<br>
-		</p>
+			</p>
 	</body>
 </html>
