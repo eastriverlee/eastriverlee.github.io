@@ -42,13 +42,15 @@ i was born twenty-six years after when there was a giant leap for mankind.<br><b
 function loadWritings() {
 	fetch("writing")
 		.then(response => response.text())
-		.then(text => document.getElementById('content').innerHTML= `<p>${text}</p>`)
+		.then(text => document.getElementById('content').innerHTML= `<p>${text}</p><p style="color: #eeeeee">(${text.length} 글자)</p>`)
 }
 
 function loadWorks() {
 	const works = 
 `
 <div class="container"><iframe class="video" src="https://www.youtube.com/embed/deP_KRzFTsY?rel=0&amp;autoplay=1&amp;loop=1;&amp;controls=0&amp;showinfo=0;playlist=deP_KRzFTsY" frameborder="0" allowfullscreen=""></iframe></div>
+<br>
+<div class="container"><iframe class="video" src="https://www.youtube.com/embed/cqutxaAJRtE" frameborder="0" allowfullscreen=""></iframe></div>
 <p id="footer">
 document.getElementById('content').innerHTML= intro
 `

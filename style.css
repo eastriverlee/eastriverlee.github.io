@@ -40,6 +40,7 @@
 		ul#tab li a:hover {
 			background-color: rgb(204, 204, 204);
 			color: rgb(18, 18, 18);
+			cursor: pointer;
 		}
 		ul#tab li a#selected {
 			background-color: white;
