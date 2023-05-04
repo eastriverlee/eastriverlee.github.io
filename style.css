@@ -3,10 +3,11 @@
 	--light: rgb(204, 204, 204);
 }
 body {
-	font-family: "menlo", monospace;
+	font-family: "Cascadia Code", monospace;
 	margin: 2%;
 	min-width: 594px;
 	padding-bottom: 40px;
+	src: url("./CascadiaCode.woff2");
 }
 h1 {
 	background-color: black;

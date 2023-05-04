@@ -1,4 +1,4 @@
-var tabs = {'intro': 'https://eastriver.dev', 'writings': 'https://eastriver.dev/writings.html', 'works': 'https://eastriver.dev/works.html'}
+var tabs = {'intro':'', 'writings':'', 'works':''}
 
 function select(selected) {
 	var tabview = ''
