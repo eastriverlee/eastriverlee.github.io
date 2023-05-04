@@ -1,4 +1,4 @@
-var tabs = {'intro': 'https://eastriver.today', 'writings': 'https://eastriver.today/writings.html', 'works': 'https://eastriver.today/works.html'}
+var tabs = {'intro': 'https://eastriver.dev', 'writings': 'https://eastriver.dev/writings.html', 'works': 'https://eastriver.dev/works.html'}
 
 function select(selected) {
 	var tabview = ''
@@ -20,7 +20,7 @@ function select(selected) {
 
 function loadIndex() {
 	const intro = 
-`<iframe class="ascii" src="https://eastriver.today/ascii.html" scrolling=no frameborder=no align="middle"></iframe>
+`<iframe class="ascii" src="https://eastriver.dev/ascii.html" scrolling=no frameborder=no align="middle"></iframe>
 <p>
 there is not much to say, <span class="em">really</span>.<br>
 <br>
