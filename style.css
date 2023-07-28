@@ -9,11 +9,11 @@
 }
 html {
 	background-color: var(--blue);
+	min-width: 300px;
 }
 body {
 	font-family: "Cascadia Code", monospace;
 	padding: 1%;
-	min-width: 520px;
 	min-height: 100vh;
 	padding-bottom: 40px;
 	background-color: white;
@@ -31,6 +31,9 @@ p {
 }
 a {
 	text-decoration: none;
+}
+#content {
+	overflow: clip;
 }
 ul#tab {
 	background: none;
@@ -74,7 +77,6 @@ ul#tab li a#selected:hover {
 	margin-bottom: 0;
 	left: 0;
 	width: 100%;
-	min-width: 610px;
 	position: fixed;
 	background-color: var(--blue);
 	color: rgb(0, 180, 200);
@@ -121,4 +123,55 @@ ul#tab li a#selected:hover {
 .apple-music {
 	border: solid var(--blue);
 	border-width: 2px;
+}
+
+@media only screen and (max-width: 600px) {
+	.ascii {
+		float: none;
+		margin: 0;
+		padding: 8px;
+		height: 87vw;
+		width: 100%;
+		background-color: black;
+	}
+	.apple-music-container {
+		height: 454px;
+		overflow: visible;
+		position: relative;
+		padding-top: 16px;
+		bottom: 0;
+		transition: 0.2s ease-out;
+	}
+	.apple-music-container:hover {
+		height: 454px;
+		overflow: visible;
+		position: relative;
+		padding-top: 16px;
+		bottom: 0;
+		transition: 0.2s ease-out;
+	}
+	.apple-music {
+		border: none;
+		width: 100%;
+		position: relative;
+	}
+}
+
+@media (hover: none) and (pointer: coarse) {
+	.apple-music-container {
+		height: 454px;
+		overflow: visible;
+		position: relative;
+		padding-top: 16px;
+		bottom: 0;
+		transition: 0.2s ease-out;
+	}
+	.apple-music-container:hover {
+		height: 454px;
+		overflow: visible;
+		position: relative;
+		padding-top: 16px;
+		bottom: 0;
+		transition: 0.2s ease-out;
+	}
 }
