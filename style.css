@@ -1,13 +1,22 @@
+@font-face {
+    font-family: 'Cascadia Code';
+	src: url("./CascadiaCode.woff2");
+}
 :root {
 	--dark: rgb(18, 18, 18);
 	--light: rgb(204, 204, 204);
+	--blue: rgb(18, 18, 204);
+}
+html {
+	background-color: var(--blue);
 }
 body {
 	font-family: "Cascadia Code", monospace;
-	margin: 2%;
-	min-width: 594px;
+	padding: 1%;
+	min-width: 520px;
+	min-height: 100vh;
 	padding-bottom: 40px;
-	src: url("./CascadiaCode.woff2");
+	background-color: white;
 }
 h1 {
 	background-color: black;
@@ -18,6 +27,7 @@ h1 {
 }
 p {
 	padding-right: 20px;
+	line-height: 130%;
 }
 a {
 	text-decoration: none;
@@ -66,8 +76,9 @@ ul#tab li a#selected:hover {
 	width: 100%;
 	min-width: 610px;
 	position: fixed;
-	background-color: rgb(18, 18, 204);
+	background-color: var(--blue);
 	color: rgb(0, 180, 200);
+	z-index: 1;
 }
 .container {
 	position: relative;
@@ -93,4 +104,21 @@ ul#tab li a#selected:hover {
 	height: 33vw;
 	width: 33vw;
 	background-color: black;
+}
+.apple-music-container {
+	height: 140px;
+	overflow: clip;
+	position: fixed;
+	bottom: 0;
+	transition: 0.2s ease-out;
+}
+.apple-music-container:hover {
+	height: 454px;
+	overflow: clip;
+	position: fixed;
+	bottom: 40px;
+}
+.apple-music {
+	border: solid var(--blue);
+	border-width: 2px;
 }

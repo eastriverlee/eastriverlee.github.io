@@ -29,10 +29,14 @@ my favorite games are: exapunks, grim fandango, the curse of monkey island, timb
 my favorite bands/musicians are: the beatles, sunny day service, goonamgwayeoridingstella, sunset rollercoaster, amy winehouse, bitgwasoeum, wedance.<br>
 my favorite writers are: solmoe park, romain gary, jerome salinger, david van.<br>
 my favorite movies are: pulp fiction, face off, whiplash, burning, parasite, garden state.<br>
-my favorite animations are: futurama, bob's bergers, the simpsons, rick and morty.<br>
+my favorite animations are: futurama, bob's bergers, the simpsons, rick and morty, star trek: lower decks, arcane, evangelion.<br>
+my favorite shows are: mr. robot, friends, the office, my mister.<br>
 my favorite sites are: khan academy, coursera, stack-overflow, kyobobooks.<br>
-my favorite programming languages are: swift, c, go.<br>
-i dream about: extinction of wars, people reading, conquer of death, water disalination, basic income.<br><br>
+my favorite programming languages are: swift, c, go, cweed(the one i'm making).<br>
+my favorite brands are: apple, lego, zsa, mozilla, o'reilly, no starch press.<br>
+i despise: conservatives, windows®, bloatness, bothsidesism, yellow journalism.<br><br>
+
+i dream about: extinction of wars, people reading, conquer of death, water disalination, universial basic income, better media.<br><br>
 i was born twenty-six years after when there was a giant leap for mankind.<br><br><br>	
 </p>
 `
