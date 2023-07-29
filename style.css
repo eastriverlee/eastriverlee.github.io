@@ -7,10 +7,6 @@
 	--light: rgb(204, 204, 204);
 	--blue: rgb(18, 18, 204);
 }
-html {
-	background-color: var(--blue);
-	min-width: 300px;
-}
 body {
 	font-family: "Cascadia Code", monospace;
 	padding: 1%;
@@ -126,6 +122,9 @@ ul#tab li a#selected:hover {
 }
 
 @media only screen and (max-width: 600px) {
+	ul#tab {
+		display: block;
+	}
 	.ascii {
 		float: none;
 		margin: 0;

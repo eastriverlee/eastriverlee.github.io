@@ -21,7 +21,8 @@ function select(selected) {
 
 function loadIndex() {
 	const intro = 
-`<iframe class="ascii" src="https://eastriver.dev/ascii.html" scrolling=no frameborder=no align="middle"></iframe>
+`
+<iframe class="ascii" src="https://eastriver.dev/ascii.html" scrolling=no frameborder=no align="middle"></iframe>
 <p>
 there is not much to say, <span class="em">really</span>.<br>
 <br>
