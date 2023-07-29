@@ -1,4 +1,4 @@
-var tabs = {'intro':'', 'writings':'', 'works':''}
+var tabs = {'intro':'', 'articles':'', 'writings':'', 'works':''}
 
 function select(selected) {
 	var tabview = ''
@@ -12,8 +12,9 @@ function select(selected) {
 	document.getElementById('tab').innerHTML = tabview
 	switch (selected) {
 		case 0: loadIndex(); break
-		case 1: loadWritings(); break
-		case 2: loadWorks(); break
+		case 1: loadArticles(); break
+		case 2: loadWritings(); break
+		case 3: loadWorks(); break
 		default: break
 	}
 }
@@ -41,6 +42,12 @@ i was born twenty-six years after when there was a giant leap for mankind.<br><b
 </p>
 `
 	document.getElementById('content').innerHTML= intro
+}
+
+function loadArticles() {
+	fetch("articles")
+		.then(response => response.text())
+		.then(text => document.getElementById('content').innerHTML= `<p>${text}</p><p style="color: #eeeeee">(${text.length} 글자)</p>`)
 }
 
 function loadWritings() {
