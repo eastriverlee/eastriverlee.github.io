@@ -46,9 +46,16 @@ i was born twenty-six years after when there was a giant leap for mankind.<br><b
 }
 
 function loadArticles() {
-	fetch("articles")
-		.then(response => response.text())
-		.then(text => document.getElementById('content').innerHTML= `<p>${text}</p><p style="color: #eeeeee">(${text.length} 글자)</p>`)
+	(async () => {
+		const response = await fetch('https://api.github.com/repos/eastriverlee/eastriverlee.github.io/contents/articles')
+		const files = await response.json()
+		let html = '<ul>'
+		for (let file of files) {
+			html += `<li><a href="${file.path}">${file.name}</a></li>`
+		}
+		html += '</ul>'
+		document.getElementById('content').innerHTML= html
+	})()
 }
 
 function loadWritings() {
