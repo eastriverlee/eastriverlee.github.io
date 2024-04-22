@@ -77,9 +77,9 @@ function loadWorks() {
 }
 
 function loadLinks() {
-	const links = {'github.com/eastriverlee':'github', 'eastriverlee.itch.io':'itch.io', 'lee@eastriver.dev':'mail'}
+	const links = {'https://github.com/eastriverlee':'github', 'https://eastriverlee.itch.io':'itch.io', 'mailto:lee@eastriver.dev':'mail'}
     let html = '<ul>'
-    for (let [link, alias] of links) {
+    for (let [link, alias] of Object.entries(links)) {
         html += `<li><a href="${link}">${alias}</a></li>`
     }
     html += '</ul>'
