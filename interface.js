@@ -1,11 +1,11 @@
-var tabs = {'intro':'', 'articles':'', 'writings':'', 'works':''}
+var tabs = {'intro':'', 'articles':'', 'story':'', 'works':'', 'links':''}
 
 function select(selected) {
 	var tabview = ''
 	var i = 0
 
-	for (var name in tabs) {
-		tabview += `<li><a ${selected == i ? 'id="selected"' : ''} onclick='select(${i})'>${name}</a></li>`
+	for (var tab in tabs) {
+		tabview += `<li><a ${selected == i ? 'id="selected"' : ''} onclick='select(${i})'>${tab}</a></li>`
 		i++
 	}
 	tabview = `<ul id="tab">${tabview}</ul>`
@@ -13,8 +13,9 @@ function select(selected) {
 	switch (selected) {
 		case 0: loadIndex(); break
 		case 1: loadArticles(); break
-		case 2: loadWritings(); break
+		case 2: loadStory(); break
 		case 3: loadWorks(); break
+		case 4: loadLinks(); break
 		default: break
 	}
 }
@@ -58,22 +59,31 @@ function loadArticles() {
 	})()
 }
 
-function loadWritings() {
-	fetch("writing")
+function loadStory() {
+	fetch("story")
 		.then(response => response.text())
 		.then(text => document.getElementById('content').innerHTML= `<p>${text}</p><p style="color: #eeeeee">(${text.length} 글자)</p>`)
 }
 
 function loadWorks() {
-	const works = 
+	const works =
 `
 <div class="container"><iframe class="video" src="https://www.youtube.com/embed/deP_KRzFTsY?rel=0&amp;autoplay=1&amp;loop=1;&amp;controls=0&amp;showinfo=0;playlist=deP_KRzFTsY" frameborder="0" allowfullscreen=""></iframe></div>
 <br>
 <div class="container"><iframe class="video" src="https://www.youtube.com/embed/cqutxaAJRtE" frameborder="0" allowfullscreen=""></iframe></div>
 <p id="footer">
-document.getElementById('content').innerHTML= intro
 `
 	document.getElementById('content').innerHTML= works
+}
+
+function loadLinks() {
+	const links = {'github.com/eastriverlee':'github', 'eastriverlee.itch.io':'itch.io', 'lee@eastriver.dev':'mail'}
+    let html = '<ul>'
+    for (let [link, alias] of links) {
+        html += `<li><a href="${link}">${alias}</a></li>`
+    }
+    html += '</ul>'
+	document.getElementById('content').innerHTML= html
 }
 
 select(0)
