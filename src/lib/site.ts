@@ -289,7 +289,7 @@ export const stickers: Sticker[] = [
 	{ name: 'irregular', url: 'https://music.apple.com/album/1708433527', imageURL: '/images/stickers/bitgwasoeum-irregular.webp', width: 225, height: 224 },
 	{ name: 'mozilla', url: buildWikipediaURL('Mozilla'), imageURL: '/images/stickers/mozilla.webp', width: 441, height: 125, isDieCut: true },
 	{ name: 'face/off', url: buildWikipediaURL('Face/Off'), imageURL: '/images/stickers/face-off.webp', width: 496, height: 739 },
-	{ name: 'evangelion', url: buildWikipediaURL('Neon Genesis Evangelion'), imageURL: '/images/stickers/evangelion.webp', width: 366, height: 138 },
+	{ name: 'evangelion', url: buildWikipediaURL('Neon Genesis Evangelion'), imageURL: '/images/stickers/evangelion.webp', width: 494, height: 739 },
 	{ name: 'c', url: buildWikipediaURL('C (programming language)'), imageURL: '/images/stickers/the-c-programming-language.webp', width: 251, height: 260, isDieCut: true },
 	{ name: 'juno', url: buildWikipediaURL('Juno (Remi Wolf album)'), imageURL: '/images/stickers/juno.webp', width: 226, height: 225 },
 	{ name: "bob's burgers", url: buildWikipediaURL("Bob's Burgers"), imageURL: '/images/stickers/bobs-burgers.webp', width: 139, height: 387, isDieCut: true },

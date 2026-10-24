@@ -73,17 +73,26 @@
 		justify-self: center;
 		align-self: center;
 		transform: rotate(var(--tilt));
-		transition: transform 160ms ease-out;
 	}
 
 	li:hover,
 	li:focus-within {
-		transform: rotate(var(--tilt)) scale(1.03);
+		animation: wiggle 600ms ease-in-out;
+	}
+
+	@keyframes wiggle {
+		30% {
+			transform: rotate(calc(var(--tilt) - 1deg));
+		}
+		70% {
+			transform: rotate(calc(var(--tilt) + 1deg));
+		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		li {
-			transition: none;
+		li:hover,
+		li:focus-within {
+			animation: none;
 		}
 	}
 
