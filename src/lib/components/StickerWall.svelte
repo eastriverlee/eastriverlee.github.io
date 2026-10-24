@@ -45,7 +45,7 @@
 
 	@media (min-width: 880px) {
 		.wall {
-			--scale: 0.8;
+			--scale: 0.7;
 		}
 	}
 
