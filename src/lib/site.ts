@@ -253,7 +253,7 @@ export const favorites: Favorite[] = [
 ];
 
 export const stickers: Sticker[] = [
-	{ name: 'grim fandango', url: buildWikipediaURL('Grim Fandango'), imageURL: '/images/stickers/grim-fandango.webp', width: 275, height: 365 },
+	{ name: 'grim fandango', url: buildWikipediaURL('Grim Fandango'), imageURL: '/images/stickers/grim-fandango.webp', width: 245, height: 365 },
 	{ name: 'futurama', url: buildWikipediaURL('Futurama'), imageURL: '/images/stickers/futurama.webp', width: 288, height: 415, isDieCut: true },
 	{ name: 'pulp fiction', url: buildWikipediaURL('Pulp Fiction'), imageURL: '/images/stickers/pulp-fiction.webp', width: 249, height: 365 },
 	{ name: 'swift', url: buildWikipediaURL('Swift (programming language)'), imageURL: '/images/stickers/swift.webp', width: 441, height: 153, isDieCut: true },
