@@ -62,7 +62,6 @@
 					posterURL="https://i.ytimg.com/vi/{film.youtubeID}/hqdefault.jpg"
 				/>
 				<div class="label">
-					<p class="artist">eastriver <span>(b. 1995)</span></p>
 					<h3><cite>{film.name}</cite>, {film.since}</h3>
 					<p>{film.medium}</p>
 					{#if film.durationInSeconds}
@@ -104,6 +103,7 @@
 		padding: 24px;
 		border: 1px solid var(--rule);
 		color: var(--ink);
+		background: none;
 	}
 
 	.specimen:hover {
@@ -133,14 +133,6 @@
 
 	.label cite {
 		font-style: italic;
-	}
-
-	.artist {
-		font-weight: 700;
-	}
-
-	.artist span {
-		font-weight: 400;
 	}
 
 	.label p {

@@ -28,7 +28,6 @@
 	--band: var(--black);
 	--band-ink: var(--white);
 	--blue-ink: var(--cyan);
-	--link: var(--blue);
 	--measure: 72ch;
 	--gutter: clamp(16px, 4vw, 40px);
 	--sticky-top: 80px;
@@ -43,7 +42,6 @@
 	:root {
 		--paper: var(--black);
 		--ink: var(--white);
-		--link: var(--cyan);
 	}
 }
 
@@ -67,8 +65,16 @@ body {
 }
 
 a {
-	color: var(--link);
+	color: var(--blue);
 	text-decoration: none;
+}
+
+main a {
+	padding: 0 0.25em;
+	color: var(--cyan);
+	background: var(--blue);
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
 }
 
 a:hover {

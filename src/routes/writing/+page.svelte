@@ -45,6 +45,7 @@
 		padding: 24px;
 		border: 1px solid var(--rule);
 		color: var(--ink);
+		background: none;
 	}
 
 	.story:hover {
@@ -59,9 +60,11 @@
 	}
 
 	.meta {
-		display: block;
+		display: inline-block;
 		margin-top: 16px;
-		color: var(--link);
+		padding: 0 0.25em;
+		color: var(--cyan);
+		background: var(--blue);
 	}
 
 	li {
