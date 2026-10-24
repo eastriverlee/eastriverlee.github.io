@@ -282,7 +282,7 @@ export const stickers: Sticker[] = [
 	{ name: 'legend of a suicide', url: buildWikipediaURL('David Vann (writer)'), imageURL: '/images/stickers/legend-of-a-suicide.webp', width: 234, height: 364 },
 	{ name: 'rick and morty', url: buildWikipediaURL('Rick and Morty'), imageURL: '/images/stickers/rick-and-morty.webp', width: 440, height: 151, isDieCut: true },
 	{ name: 'cweed', url: '/works', imageURL: '/images/stickers/cweed.webp', width: 166, height: 220, isDieCut: true },
-	{ name: '하늘의 뿌리', url: buildWikipediaURL('Les Racines du ciel', 'fr'), imageURL: '/images/stickers/the-roots-of-heaven.webp', width: 242, height: 364 },
+	{ name: 'les racines du ciel', url: buildWikipediaURL('Les Racines du ciel', 'fr'), imageURL: '/images/stickers/the-roots-of-heaven.webp', width: 222, height: 364 },
 	{ name: 'thimbleweed park', url: buildWikipediaURL('Thimbleweed Park'), imageURL: '/images/stickers/thimbleweed-park.webp', width: 364, height: 185 },
 	{ name: 'irregular', url: 'https://music.apple.com/album/1708433527', imageURL: '/images/stickers/bitgwasoeum-irregular.webp', width: 366, height: 366 },
 	{ name: 'mozilla', url: buildWikipediaURL('Mozilla'), imageURL: '/images/stickers/mozilla.webp', width: 441, height: 125, isDieCut: true },
