@@ -273,7 +273,7 @@ export const stickers: Sticker[] = [
 	{ name: 'eye', url: 'https://mitsume.me', imageURL: '/images/stickers/mitsume-eye.webp', width: 366, height: 366 },
 	{ name: 'back to black', url: buildWikipediaURL('Back to Black'), imageURL: '/images/stickers/back-to-black.webp', width: 367, height: 366 },
 	{ name: 'go gopher', url: buildWikipediaURL('Go (programming language)'), imageURL: '/images/stickers/go.webp', width: 314, height: 422, isDieCut: true },
-	{ name: 'exapunks', url: buildWikipediaURL('Exapunks'), imageURL: '/images/stickers/exapunks.webp', width: 365, height: 173 },
+	{ name: 'exapunks', url: buildWikipediaURL('Exapunks'), imageURL: '/images/stickers/exapunks.webp', width: 258, height: 262, isDieCut: true },
 	{ name: 'whiplash', url: buildWikipediaURL('Whiplash (2014 film)'), imageURL: '/images/stickers/whiplash.webp', width: 249, height: 366 },
 	{ name: 'lego', url: buildWikipediaURL('Lego'), imageURL: '/images/stickers/lego.webp', width: 262, height: 262, isDieCut: true },
 	{ name: 'friends', url: buildWikipediaURL('Friends'), imageURL: '/images/stickers/friends.webp', width: 440, height: 91, isDieCut: true },
