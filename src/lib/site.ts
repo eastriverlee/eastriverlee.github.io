@@ -267,7 +267,7 @@ export const stickers: Sticker[] = [
 	{ name: 'goonamgwayeoridingstella', url: buildWikipediaURL('구남과여라이딩스텔라', 'ko'), imageURL: '/images/stickers/goonamguayeo-sun-power.webp', width: 226, height: 225 },
 	{ name: 'stack overflow', url: buildWikipediaURL('Stack Overflow'), imageURL: '/images/stickers/stack-overflow.webp', width: 339, height: 58, isDieCut: true },
 	{ name: 'j. d. salinger', url: buildWikipediaURL('The Catcher in the Rye'), imageURL: '/images/stickers/the-catcher-in-the-rye.webp', width: 134, height: 155 },
-	{ name: 'the curse of monkey island', url: buildWikipediaURL('The Curse of Monkey Island'), imageURL: '/images/stickers/curse-of-monkey-island.webp', width: 134, height: 177 },
+	{ name: 'the curse of monkey island', url: buildWikipediaURL('The Curse of Monkey Island'), imageURL: '/images/stickers/curse-of-monkey-island.webp', width: 335, height: 445 },
 	{ name: 'apple', url: buildWikipediaURL('Apple Inc.'), imageURL: '/images/stickers/apple.webp', width: 166, height: 200, isDieCut: true },
 	{ name: 'parasite', url: buildWikipediaURL('Parasite (2019 film)'), imageURL: '/images/stickers/parasite.webp', width: 313, height: 443 },
 	{ name: 'the simpsons', url: buildWikipediaURL('The Simpsons'), imageURL: '/images/stickers/the-simpsons.webp', width: 170, height: 273, isDieCut: true },
