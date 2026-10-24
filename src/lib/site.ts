@@ -1,0 +1,324 @@
+import semteulcheSpecimen from '$lib/content/specimens/semteulche.svg?raw';
+import hesalcheSpecimen from '$lib/content/specimens/hesalche.svg?raw';
+
+export type WorkKind = 'language' | 'app' | 'tool' | 'library' | 'font' | 'film';
+
+export type Work = {
+	name: string;
+	kind: WorkKind;
+	since?: number;
+	isOngoing?: boolean;
+	summary?: string;
+	url?: string;
+	isCurrent?: boolean;
+	specimenSVG?: string;
+	youtubeID?: string;
+	medium?: string;
+	durationInSeconds?: number;
+};
+
+export type Link = {
+	label: string;
+	url: string;
+};
+
+export type FavoriteItem = {
+	name: string;
+	url?: string;
+};
+
+export type Favorite = {
+	category: string;
+	items: FavoriteItem[];
+};
+
+export type Sticker = {
+	name: string;
+	url: string;
+	imageURL: string;
+	width: number;
+	height: number;
+	isDieCut?: boolean;
+};
+
+function buildWikipediaURL(title: string, language = 'en'): string {
+	return `https://${language}.wikipedia.org/wiki/${encodeURIComponent(title.replaceAll(' ', '_'))}`;
+}
+
+export const siteTitle = '동녘 강의 오늘';
+export const siteDescription = 'code, type, art and writing by eastriver (이동하).';
+
+export const kindLabels: Record<WorkKind, string> = {
+	language: 'languages',
+	app: 'apps',
+	tool: 'tools',
+	library: 'libraries',
+	font: 'type',
+	film: 'film'
+};
+
+export const works: Work[] = [
+	{
+		name: 'cweed',
+		kind: 'language',
+		since: 2022,
+		isOngoing: true,
+		summary: "a programming language i'm making.",
+		isCurrent: true
+	},
+	{
+		name: 'omnlet',
+		kind: 'app',
+		since: 2026,
+		isOngoing: true,
+		summary: 'every language, learnable from every language. open source, built by its community.',
+		isCurrent: true
+	},
+	{
+		name: 'promi$er',
+		kind: 'app',
+		since: 2024,
+		summary: 'a todo list with fines. miss a deadline and you pay what you promised.',
+		url: 'https://apps.apple.com/app/promi%24er/id6740737772'
+	},
+	{
+		name: 'todoom',
+		kind: 'app',
+		since: 2022,
+		summary: 'a todo list where finished tasks turn into bombs and blow up. shake to undo.'
+	},
+	{
+		name: 'monkeys',
+		kind: 'tool',
+		since: 2026,
+		summary: 'replaces .env with a keys-only file. secrets stay in the os vault.',
+		url: 'https://monk3ys.dev',
+		isCurrent: true
+	},
+	{
+		name: 'gitto',
+		kind: 'tool',
+		since: 2026,
+		summary: 'a second checkout, whatever it weighs: submodules, dependencies and build output included.',
+		url: 'https://gitto.13e7.co'
+	},
+	{
+		name: 'hocus',
+		kind: 'tool',
+		since: 2021,
+		summary: 'a keyboard-centric window manager and focus changer.',
+		url: 'https://eastriverlee.itch.io/hocus'
+	},
+	{
+		name: 'LLM.swift',
+		kind: 'library',
+		since: 2023,
+		summary: 'run large language models locally on apple platforms.',
+		url: 'https://github.com/eastriverlee/LLM.swift'
+	},
+	{
+		name: '셈틀체 semteulche',
+		kind: 'font',
+		summary: 'a monospaced sans-serif hangul typeface, a spiritual offspring of jetbrains mono.',
+		url: 'https://eastriverlee.itch.io/semteulche',
+		specimenSVG: semteulcheSpecimen
+	},
+	{
+		name: '헤살체 hesalche',
+		kind: 'font',
+		summary: 'a monospaced serif hangul typeface. 헤살 is an old korean word for meddling, close to hacking.',
+		url: 'https://eastriverlee.itch.io/hesalche',
+		specimenSVG: hesalcheSpecimen
+	},
+	{
+		name: '(an rgb display of)(a video of)the weight of goldilocks',
+		kind: 'film',
+		since: 2018,
+		medium: 'single-channel video',
+		durationInSeconds: 522,
+		youtubeID: 'deP_KRzFTsY'
+	},
+	{
+		name: '(an rgb display of)(a video of)동산에 올라',
+		kind: 'film',
+		since: 2020,
+		medium: 'single-channel video',
+		durationInSeconds: 951,
+		youtubeID: 'cqutxaAJRtE'
+	}
+];
+
+export const links: Link[] = [
+	{ label: 'github', url: 'https://github.com/eastriverlee' },
+	{ label: 'linkedin', url: 'https://www.linkedin.com/in/eastriver' },
+	{ label: 'twitter', url: 'https://twitter.com/3astriver' },
+	{ label: 'itch.io', url: 'https://eastriverlee.itch.io' }
+];
+
+export const favorites: Favorite[] = [
+	{
+		category: 'games',
+		items: [
+			{ name: 'exapunks', url: buildWikipediaURL('Exapunks') },
+			{ name: 'grim fandango', url: buildWikipediaURL('Grim Fandango') },
+			{ name: 'the curse of monkey island', url: buildWikipediaURL('The Curse of Monkey Island') },
+			{ name: 'thimbleweed park', url: buildWikipediaURL('Thimbleweed Park') },
+			{ name: 'ftl', url: buildWikipediaURL('FTL: Faster Than Light') },
+			{ name: 'sonic adventure', url: buildWikipediaURL('Sonic Adventure') },
+			{ name: 'i love katamari', url: buildWikipediaURL('I Love Katamari') }
+		]
+	},
+	{
+		category: 'music',
+		items: [
+			{ name: 'the beatles', url: buildWikipediaURL('The Beatles') },
+			{ name: 'goonamgwayeoridingstella', url: buildWikipediaURL('구남과여라이딩스텔라', 'ko') },
+			{ name: 'amy winehouse', url: buildWikipediaURL('Amy Winehouse') },
+			{ name: 'bitgwasoeum' },
+			{ name: 'wedance' },
+			{ name: 'the symposium', url: buildWikipediaURL('The Symposium (band)') },
+			{ name: 'mitsume', url: 'https://mitsume.me' },
+			{ name: 'remi wolf', url: buildWikipediaURL('Remi Wolf') }
+		]
+	},
+	{
+		category: 'writers',
+		items: [
+			{ name: 'solmoe park', url: buildWikipediaURL('박솔뫼', 'ko') },
+			{ name: 'romain gary', url: buildWikipediaURL('Romain Gary') },
+			{ name: 'j. d. salinger', url: buildWikipediaURL('J. D. Salinger') },
+			{ name: 'david vann', url: buildWikipediaURL('David Vann (writer)') }
+		]
+	},
+	{
+		category: 'movies',
+		items: [
+			{ name: 'pulp fiction', url: buildWikipediaURL('Pulp Fiction') },
+			{ name: 'face/off', url: buildWikipediaURL('Face/Off') },
+			{ name: 'whiplash', url: buildWikipediaURL('Whiplash (2014 film)') },
+			{ name: 'burning', url: buildWikipediaURL('Burning (2018 film)') },
+			{ name: 'parasite', url: buildWikipediaURL('Parasite (2019 film)') },
+			{ name: 'garden state', url: buildWikipediaURL('Garden State (film)') },
+			{ name: 'matchstick men', url: buildWikipediaURL('Matchstick Men') }
+		]
+	},
+	{
+		category: 'animation',
+		items: [
+			{ name: 'futurama', url: buildWikipediaURL('Futurama') },
+			{ name: "bob's burgers", url: buildWikipediaURL("Bob's Burgers") },
+			{ name: 'the simpsons', url: buildWikipediaURL('The Simpsons') },
+			{ name: 'rick and morty', url: buildWikipediaURL('Rick and Morty') },
+			{ name: 'star trek: lower decks', url: buildWikipediaURL('Star Trek: Lower Decks') },
+			{ name: 'arcane', url: buildWikipediaURL('Arcane (TV series)') },
+			{ name: 'evangelion', url: buildWikipediaURL('Neon Genesis Evangelion') }
+		]
+	},
+	{
+		category: 'shows',
+		items: [
+			{ name: 'mr. robot', url: buildWikipediaURL('Mr. Robot') },
+			{ name: 'friends', url: buildWikipediaURL('Friends') },
+			{ name: 'the office', url: buildWikipediaURL('The Office (American TV series)') },
+			{ name: 'my mister', url: buildWikipediaURL('My Mister') },
+			{ name: 'm.d. house', url: buildWikipediaURL('House (TV series)') }
+		]
+	},
+	{
+		category: 'sites',
+		items: [
+			{ name: 'khan academy', url: buildWikipediaURL('Khan Academy') },
+			{ name: 'coursera', url: buildWikipediaURL('Coursera') },
+			{ name: 'stack overflow', url: buildWikipediaURL('Stack Overflow') },
+			{ name: 'kyobobooks', url: buildWikipediaURL('Kyobo Book Centre') }
+		]
+	},
+	{
+		category: 'languages',
+		items: [
+			{ name: 'swift', url: buildWikipediaURL('Swift (programming language)') },
+			{ name: 'c', url: buildWikipediaURL('C (programming language)') },
+			{ name: 'go', url: buildWikipediaURL('Go (programming language)') },
+			{ name: 'cweed' }
+		]
+	},
+	{
+		category: 'brands',
+		items: [
+			{ name: 'apple', url: buildWikipediaURL('Apple Inc.') },
+			{ name: 'lego', url: buildWikipediaURL('Lego') },
+			{ name: 'zsa', url: 'https://www.zsa.io' },
+			{ name: 'mozilla', url: buildWikipediaURL('Mozilla') },
+			{ name: "o'reilly", url: buildWikipediaURL("O'Reilly Media") },
+			{ name: 'no starch press', url: buildWikipediaURL('No Starch Press') }
+		]
+	}
+];
+
+export const stickers: Sticker[] = [
+	{ name: 'grim fandango', url: buildWikipediaURL('Grim Fandango'), imageURL: '/images/stickers/grim-fandango.webp', width: 298, height: 445 },
+	{ name: 'futurama', url: buildWikipediaURL('Futurama'), imageURL: '/images/stickers/futurama.webp', width: 220, height: 315, isDieCut: true },
+	{ name: 'pulp fiction', url: buildWikipediaURL('Pulp Fiction'), imageURL: '/images/stickers/pulp-fiction.webp', width: 304, height: 444 },
+	{ name: 'swift', url: buildWikipediaURL('Swift (programming language)'), imageURL: '/images/stickers/swift.webp', width: 222, height: 201, isDieCut: true },
+	{ name: 'the beatles', url: buildWikipediaURL('Abbey Road'), imageURL: '/images/stickers/abbey-road.webp', width: 225, height: 225 },
+	{ name: 'mr. robot', url: buildWikipediaURL('Mr. Robot'), imageURL: '/images/stickers/mr-robot.webp', width: 325, height: 71, isDieCut: true },
+	{ name: 'solmoe park', url: buildWikipediaURL('박솔뫼', 'ko'), imageURL: '/images/stickers/the-time-of-the-city.webp', width: 105, height: 156 },
+	{ name: 'sonic adventure', url: buildWikipediaURL('Sonic Adventure'), imageURL: '/images/stickers/sonic-adventure.webp', width: 353, height: 321, isDieCut: true },
+	{ name: 'goonamgwayeoridingstella', url: buildWikipediaURL('구남과여라이딩스텔라', 'ko'), imageURL: '/images/stickers/goonamguayeo-sun-power.webp', width: 226, height: 225 },
+	{ name: 'stack overflow', url: buildWikipediaURL('Stack Overflow'), imageURL: '/images/stickers/stack-overflow.webp', width: 339, height: 58, isDieCut: true },
+	{ name: 'j. d. salinger', url: buildWikipediaURL('The Catcher in the Rye'), imageURL: '/images/stickers/the-catcher-in-the-rye.webp', width: 134, height: 155 },
+	{ name: 'the curse of monkey island', url: buildWikipediaURL('The Curse of Monkey Island'), imageURL: '/images/stickers/curse-of-monkey-island.webp', width: 335, height: 445 },
+	{ name: 'apple', url: buildWikipediaURL('Apple Inc.'), imageURL: '/images/stickers/apple.webp', width: 166, height: 200, isDieCut: true },
+	{ name: 'parasite', url: buildWikipediaURL('Parasite (2019 film)'), imageURL: '/images/stickers/parasite.webp', width: 313, height: 443 },
+	{ name: 'the simpsons', url: buildWikipediaURL('The Simpsons'), imageURL: '/images/stickers/the-simpsons.webp', width: 170, height: 273, isDieCut: true },
+	{ name: 'mitsume', url: 'https://mitsume.me', imageURL: '/images/stickers/mitsume-eye.webp', width: 224, height: 226 },
+	{ name: 'amy winehouse', url: buildWikipediaURL('Back to Black'), imageURL: '/images/stickers/back-to-black.webp', width: 225, height: 227 },
+	{ name: 'go', url: buildWikipediaURL('Go (programming language)'), imageURL: '/images/stickers/go.webp', width: 242, height: 321, isDieCut: true },
+	{ name: 'exapunks', url: buildWikipediaURL('Exapunks'), imageURL: '/images/stickers/exapunks.webp', width: 199, height: 202, isDieCut: true },
+	{ name: 'whiplash', url: buildWikipediaURL('Whiplash (2014 film)'), imageURL: '/images/stickers/whiplash.webp', width: 301, height: 445 },
+	{ name: 'lego', url: buildWikipediaURL('Lego'), imageURL: '/images/stickers/lego.webp', width: 202, height: 202, isDieCut: true },
+	{ name: 'friends', url: buildWikipediaURL('Friends'), imageURL: '/images/stickers/friends.webp', width: 340, height: 75, isDieCut: true },
+	{ name: 'the symposium', url: buildWikipediaURL('The Symposium (band)'), imageURL: '/images/stickers/the-symposium.webp', width: 225, height: 225 },
+	{ name: 'i love katamari', url: buildWikipediaURL('I Love Katamari'), imageURL: '/images/stickers/i-love-katamari.webp', width: 209, height: 312, isDieCut: true },
+	{ name: 'khan academy', url: buildWikipediaURL('Khan Academy'), imageURL: '/images/stickers/khan-academy.webp', width: 341, height: 73, isDieCut: true },
+	{ name: 'burning', url: buildWikipediaURL('Burning (2018 film)'), imageURL: '/images/stickers/burning.webp', width: 313, height: 444 },
+	{ name: 'david vann', url: buildWikipediaURL('David Vann (writer)'), imageURL: '/images/stickers/legend-of-a-suicide.webp', width: 100, height: 156 },
+	{ name: 'rick and morty', url: buildWikipediaURL('Rick and Morty'), imageURL: '/images/stickers/rick-and-morty.webp', width: 247, height: 321, isDieCut: true },
+	{ name: 'cweed', url: '/works', imageURL: '/images/stickers/cweed.webp', width: 130, height: 171, isDieCut: true },
+	{ name: 'romain gary', url: buildWikipediaURL('Les Racines du ciel', 'fr'), imageURL: '/images/stickers/the-roots-of-heaven.webp', width: 95, height: 156 },
+	{ name: 'thimbleweed park', url: buildWikipediaURL('Thimbleweed Park'), imageURL: '/images/stickers/thimbleweed-park.webp', width: 443, height: 225 },
+	{ name: 'bitgwasoeum', url: 'https://music.apple.com/album/1708433527', imageURL: '/images/stickers/bitgwasoeum-irregular.webp', width: 225, height: 224 },
+	{ name: 'mozilla', url: buildWikipediaURL('Mozilla'), imageURL: '/images/stickers/mozilla.webp', width: 342, height: 99, isDieCut: true },
+	{ name: 'face/off', url: buildWikipediaURL('Face/Off'), imageURL: '/images/stickers/face-off.webp', width: 299, height: 445 },
+	{ name: 'evangelion', url: buildWikipediaURL('Neon Genesis Evangelion'), imageURL: '/images/stickers/evangelion.webp', width: 299, height: 444 },
+	{ name: 'c', url: buildWikipediaURL('C (programming language)'), imageURL: '/images/stickers/the-c-programming-language.webp', width: 194, height: 201, isDieCut: true },
+	{ name: 'remi wolf', url: buildWikipediaURL('Juno (Remi Wolf album)'), imageURL: '/images/stickers/juno.webp', width: 226, height: 225 },
+	{ name: "bob's burgers", url: buildWikipediaURL("Bob's Burgers"), imageURL: '/images/stickers/bobs-burgers.webp', width: 109, height: 297, isDieCut: true },
+	{ name: 'coursera', url: buildWikipediaURL('Coursera'), imageURL: '/images/stickers/coursera.webp', width: 341, height: 66, isDieCut: true },
+	{ name: 'my mister', url: buildWikipediaURL('My Mister'), imageURL: '/images/stickers/my-mister.webp', width: 308, height: 444 },
+	{ name: 'm.d. house', url: buildWikipediaURL('House (TV series)'), imageURL: '/images/stickers/house.webp', width: 339, height: 83, isDieCut: true },
+	{ name: 'wedance', url: 'https://music.apple.com/album/1522655223', imageURL: '/images/stickers/wedance-dance-pop.webp', width: 225, height: 223 },
+	{ name: 'zsa', url: 'https://www.zsa.io', imageURL: '/images/stickers/zsa.webp', width: 233, height: 82, isDieCut: true },
+	{ name: 'garden state', url: buildWikipediaURL('Garden State (film)'), imageURL: '/images/stickers/garden-state.webp', width: 300, height: 444 },
+	{ name: 'the office', url: buildWikipediaURL('The Office (American TV series)'), imageURL: '/images/stickers/the-office.webp', width: 340, height: 75, isDieCut: true },
+	{ name: "o'reilly", url: buildWikipediaURL("O'Reilly Media"), imageURL: '/images/stickers/oreilly.webp', width: 339, height: 77, isDieCut: true },
+	{ name: 'ftl', url: buildWikipediaURL('FTL: Faster Than Light'), imageURL: '/images/stickers/ftl.webp', width: 329, height: 296, isDieCut: true },
+	{ name: 'matchstick men', url: buildWikipediaURL('Matchstick Men'), imageURL: '/images/stickers/matchstick-men.webp', width: 303, height: 445 },
+	{ name: 'kyobobooks', url: buildWikipediaURL('Kyobo Book Centre'), imageURL: '/images/stickers/kyobo.webp', width: 341, height: 248, isDieCut: true },
+	{ name: 'star trek: lower decks', url: buildWikipediaURL('Star Trek: Lower Decks'), imageURL: '/images/stickers/lower-decks.webp', width: 329, height: 88, isDieCut: true },
+	{ name: 'no starch press', url: buildWikipediaURL('No Starch Press'), imageURL: '/images/stickers/no-starch-press.webp', width: 340, height: 71, isDieCut: true },
+	{ name: 'arcane', url: buildWikipediaURL('Arcane (TV series)'), imageURL: '/images/stickers/arcane.webp', width: 115, height: 307, isDieCut: true }
+];
+
+export const despised = ['conservatives', 'windows®', 'bloat', 'bothsidesism', 'yellow journalism'];
+
+export const dreams = [
+	'the extinction of wars',
+	'people reading',
+	'the conquest of death',
+	'water desalination',
+	'universal basic income',
+	'better media'
+];
+
+export const playlistEmbedURL = 'https://embed.music.apple.com/us/playlist/eastriver/pl.u-YW7pF1kg1Z5';
