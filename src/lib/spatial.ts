@@ -17,19 +17,28 @@ void main() {
 const fragmentSource = `
 precision mediump float;
 uniform sampler2D photo;
-uniform sampler2D depth;
+uniform sampler2D background;
+uniform sampler2D layers;
 uniform vec2 offset;
 uniform float focusDepth;
 uniform float zoom;
 varying vec2 textureCoordinate;
-void main() {
-	vec2 base = (textureCoordinate - 0.5) / zoom + 0.5;
+
+vec2 displace(vec2 base, vec4 channelMask) {
 	vec2 coordinate = base;
 	for (int step = 0; step < 8; step++) {
-		float nearness = texture2D(depth, coordinate).r;
+		float nearness = dot(texture2D(layers, coordinate), channelMask);
 		coordinate = base + offset * (nearness - focusDepth);
 	}
-	gl_FragColor = texture2D(photo, coordinate);
+	return coordinate;
+}
+
+void main() {
+	vec2 base = (textureCoordinate - 0.5) / zoom + 0.5;
+	vec2 foregroundCoordinate = displace(base, vec4(1.0, 0.0, 0.0, 0.0));
+	vec2 backgroundCoordinate = displace(base, vec4(0.0, 0.0, 1.0, 0.0));
+	float matte = texture2D(layers, foregroundCoordinate).g;
+	gl_FragColor = mix(texture2D(background, backgroundCoordinate), texture2D(photo, foregroundCoordinate), matte);
 }`;
 
 export const zoom = 1.08;
@@ -76,10 +85,15 @@ function bindFullscreenTriangle(context: WebGLRenderingContext, program: WebGLPr
 	context.vertexAttribPointer(position, 2, context.FLOAT, false, 0, 0);
 }
 
+export type SpatialImages = {
+	photo: HTMLImageElement;
+	background: HTMLImageElement;
+	layers: HTMLImageElement;
+};
+
 export function createSpatialRenderer(
 	canvas: HTMLCanvasElement,
-	photo: HTMLImageElement,
-	depth: HTMLImageElement,
+	images: SpatialImages,
 	focusDepth: number
 ): SpatialRenderer | undefined {
 	const context = canvas.getContext('webgl', { antialias: false });
@@ -88,10 +102,11 @@ export function createSpatialRenderer(
 	const program = linkProgram(context);
 	context.useProgram(program);
 	bindFullscreenTriangle(context, program);
-	uploadTexture(context, 0, photo);
-	uploadTexture(context, 1, depth);
-	context.uniform1i(context.getUniformLocation(program, 'photo'), 0);
-	context.uniform1i(context.getUniformLocation(program, 'depth'), 1);
+	const textureNames: (keyof SpatialImages)[] = ['photo', 'background', 'layers'];
+	textureNames.forEach((name, unit) => {
+		uploadTexture(context, unit, images[name]);
+		context.uniform1i(context.getUniformLocation(program, name), unit);
+	});
 	context.uniform1f(context.getUniformLocation(program, 'focusDepth'), focusDepth);
 	context.uniform1f(context.getUniformLocation(program, 'zoom'), zoom);
 	const offsetLocation = context.getUniformLocation(program, 'offset');

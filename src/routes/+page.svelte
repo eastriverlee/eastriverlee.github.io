@@ -22,8 +22,9 @@
 	<div class="portrait">
 		<SpatialPortrait
 			photoURL="/images/portrait.jpg"
-			depthURL="/images/portrait-depth.png"
-			focusDepth={0.678}
+			backgroundURL="/images/portrait-background.jpg"
+			layersURL="/images/portrait-layers.png"
+			focusDepth={0.82}
 			alt="eastriver eating dinner on a train, glancing back at the camera"
 		/>
 	</div>
