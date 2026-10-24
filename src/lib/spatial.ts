@@ -15,8 +15,12 @@ void main() {
 }`;
 
 const fragmentSource = `
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+precision highp float;
+#else
 precision mediump float;
-uniform sampler2D photo;
+#endif
+uniform sampler2D foreground;
 uniform sampler2D background;
 uniform sampler2D layers;
 uniform vec2 offset;
@@ -38,7 +42,7 @@ void main() {
 	vec2 foregroundCoordinate = displace(base, vec4(1.0, 0.0, 0.0, 0.0));
 	vec2 backgroundCoordinate = displace(base, vec4(0.0, 0.0, 1.0, 0.0));
 	float matte = texture2D(layers, foregroundCoordinate).g;
-	gl_FragColor = mix(texture2D(background, backgroundCoordinate), texture2D(photo, foregroundCoordinate), matte);
+	gl_FragColor = mix(texture2D(background, backgroundCoordinate), texture2D(foreground, foregroundCoordinate), matte);
 }`;
 
 export const zoom = 1.08;
@@ -86,7 +90,7 @@ function bindFullscreenTriangle(context: WebGLRenderingContext, program: WebGLPr
 }
 
 export type SpatialImages = {
-	photo: HTMLImageElement;
+	foreground: HTMLImageElement;
 	background: HTMLImageElement;
 	layers: HTMLImageElement;
 };
@@ -102,7 +106,7 @@ export function createSpatialRenderer(
 	const program = linkProgram(context);
 	context.useProgram(program);
 	bindFullscreenTriangle(context, program);
-	const textureNames: (keyof SpatialImages)[] = ['photo', 'background', 'layers'];
+	const textureNames: (keyof SpatialImages)[] = ['foreground', 'background', 'layers'];
 	textureNames.forEach((name, unit) => {
 		uploadTexture(context, unit, images[name]);
 		context.uniform1i(context.getUniformLocation(program, name), unit);

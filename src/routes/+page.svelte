@@ -22,6 +22,7 @@
 	<div class="portrait">
 		<SpatialPortrait
 			photoURL="/images/portrait.jpg"
+			foregroundURL="/images/portrait-foreground.jpg"
 			backgroundURL="/images/portrait-background.jpg"
 			layersURL="/images/portrait-layers.png"
 			focusDepth={0.82}

@@ -13,13 +13,14 @@
 
 	type Props = {
 		photoURL: string;
+		foregroundURL: string;
 		backgroundURL: string;
 		layersURL: string;
 		focusDepth: number;
 		alt: string;
 	};
 
-	let { photoURL, backgroundURL, layersURL, focusDepth, alt }: Props = $props();
+	let { photoURL, foregroundURL, backgroundURL, layersURL, focusDepth, alt }: Props = $props();
 
 	const maximumOffset = 0.05;
 	const easing = 0.08;
@@ -94,8 +95,8 @@
 	}
 
 	async function startRendering(): Promise<(() => void) | undefined> {
-		const [photo, background, layers] = await Promise.all([photoURL, backgroundURL, layersURL].map(loadImage));
-		const renderer = createSpatialRenderer(canvas, { photo, background, layers }, focusDepth);
+		const [foreground, background, layers] = await Promise.all([foregroundURL, backgroundURL, layersURL].map(loadImage));
+		const renderer = createSpatialRenderer(canvas, { foreground, background, layers }, focusDepth);
 		if (!renderer) return undefined;
 		isRendering = true;
 		return runAnimation(renderer);
