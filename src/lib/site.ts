@@ -256,7 +256,7 @@ export const stickers: Sticker[] = [
 	{ name: 'grim fandango', url: buildWikipediaURL('Grim Fandango'), imageURL: '/images/stickers/grim-fandango.webp', width: 245, height: 365 },
 	{ name: 'futurama', url: buildWikipediaURL('Futurama'), imageURL: '/images/stickers/futurama.webp', width: 288, height: 415, isDieCut: true },
 	{ name: 'pulp fiction', url: buildWikipediaURL('Pulp Fiction'), imageURL: '/images/stickers/pulp-fiction.webp', width: 249, height: 365 },
-	{ name: 'swift', url: buildWikipediaURL('Swift (programming language)'), imageURL: '/images/stickers/swift.webp', width: 441, height: 153, isDieCut: true },
+	{ name: 'swift', url: buildWikipediaURL('Swift (programming language)'), imageURL: '/images/stickers/swift.webp', width: 289, height: 260, isDieCut: true },
 	{ name: 'abbey road', url: buildWikipediaURL('Abbey Road'), imageURL: '/images/stickers/abbey-road.webp', width: 365, height: 365 },
 	{ name: 'mr. robot', url: buildWikipediaURL('Mr. Robot'), imageURL: '/images/stickers/mr-robot.webp', width: 420, height: 86, isDieCut: true },
 	{ name: '도시의 시간', url: buildWikipediaURL('박솔뫼', 'ko'), imageURL: '/images/stickers/the-time-of-the-city.webp', width: 247, height: 364 },
