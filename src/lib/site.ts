@@ -55,6 +55,19 @@ export const works: Work[] = [
 		isCurrent: true
 	},
 	{
+		name: 'promi$er',
+		kind: 'app',
+		since: 2024,
+		summary: 'a todo list with fines. miss a deadline and you pay what you promised.',
+		url: 'https://apps.apple.com/app/promi%24er/id6740737772'
+	},
+	{
+		name: 'todoom',
+		kind: 'app',
+		since: 2022,
+		summary: 'a todo list where finished tasks turn into bombs and blow up. shake to undo.'
+	},
+	{
 		name: 'monkeys',
 		kind: 'tool',
 		since: 2026,
@@ -82,20 +95,6 @@ export const works: Work[] = [
 		since: 2023,
 		summary: 'run large language models locally on apple platforms.',
 		url: 'https://github.com/eastriverlee/LLM.swift'
-	},
-	{
-		name: 'julia.swift',
-		kind: 'library',
-		since: 2026,
-		summary: 'fast, free, offline julia-1 decisions on cpu.',
-		url: 'https://github.com/eastriverlee/julia.swift'
-	},
-	{
-		name: 'geulzza',
-		kind: 'library',
-		since: 2021,
-		summary: 'decomposes korean strings into jamo.',
-		url: 'https://github.com/eastriverlee/geulzza'
 	},
 	{
 		name: '셈틀체 semteulche',
