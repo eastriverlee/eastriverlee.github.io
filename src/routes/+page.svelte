@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Portrait from '$lib/components/Portrait.svelte';
+	import SpatialPortrait from '$lib/components/SpatialPortrait.svelte';
 	import WorkList from '$lib/components/WorkList.svelte';
 	import { links, siteTitle, works } from '$lib/site';
 
@@ -20,7 +20,12 @@
 		</p>
 	</div>
 	<div class="portrait">
-		<Portrait />
+		<SpatialPortrait
+			photoURL="/images/portrait.jpg"
+			depthURL="/images/portrait-depth.png"
+			focusDepth={0.678}
+			alt="eastriver eating dinner on a train, glancing back at the camera"
+		/>
 	</div>
 </section>
 
@@ -83,12 +88,12 @@
 	}
 
 	.portrait {
-		max-width: 360px;
+		max-width: 420px;
 	}
 
 	@media (min-width: 880px) {
 		.hero {
-			grid-template-columns: 1fr 300px;
+			grid-template-columns: 1fr 340px;
 		}
 	}
 
