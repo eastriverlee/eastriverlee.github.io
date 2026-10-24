@@ -5,16 +5,37 @@
 		label: string;
 	};
 
+	type Drag = { startX: number; startTurn: number };
+
 	let { frontURL, backURL, label }: Props = $props();
 
 	const maximumTiltInDegrees = 14;
 	const edgeSlices = [1, 2, 3, 4, 5];
 
-	let card: HTMLButtonElement;
-	let isFlipped = $state(false);
+	let card: HTMLDivElement;
+	let turn = $state(0);
+	let drag: Drag | null = $state(null);
 	let tilt = $state({ x: 0, y: 0 });
 
+	function startDrag(event: PointerEvent) {
+		drag = { startX: event.clientX, startTurn: turn };
+		card.setPointerCapture(event.pointerId);
+	}
+
 	function handlePointerMove(event: PointerEvent) {
+		if (drag) {
+			turnWithDrag(event, drag);
+			return;
+		}
+		tiltTowardPointer(event);
+	}
+
+	function turnWithDrag(event: PointerEvent, activeDrag: Drag) {
+		const width = card.getBoundingClientRect().width;
+		turn = activeDrag.startTurn + ((event.clientX - activeDrag.startX) / width) * 180;
+	}
+
+	function tiltTowardPointer(event: PointerEvent) {
 		if (event.pointerType !== 'mouse') return;
 		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 		const bounds = card.getBoundingClientRect();
@@ -23,32 +44,39 @@
 		tilt = { x: -vertical * maximumTiltInDegrees, y: horizontal * maximumTiltInDegrees };
 	}
 
+	function endDrag() {
+		if (!drag) return;
+		turn = Math.round(turn / 180) * 180;
+		drag = null;
+	}
+
 	function resetTilt() {
 		tilt = { x: 0, y: 0 };
 	}
 </script>
 
-<button
+<div
 	bind:this={card}
-	type="button"
 	class="card"
+	role="img"
 	aria-label={label}
-	aria-pressed={isFlipped}
-	onclick={() => (isFlipped = !isFlipped)}
+	onpointerdown={startDrag}
 	onpointermove={handlePointerMove}
+	onpointerup={endDrag}
+	onpointercancel={endDrag}
 	onpointerleave={resetTilt}
 	style:--tilt-x="{tilt.x}deg"
-	style:--tilt-y="{tilt.y}deg"
+	style:--turn="{tilt.y + turn}deg"
 	style:--sheen="{50 - tilt.y * 4}%"
 >
-	<span class="body" class:is-flipped={isFlipped}>
+	<span class="body" class:is-dragging={drag !== null}>
 		<span class="face front" style:background-image="url({frontURL})"></span>
 		{#each edgeSlices as slice (slice)}
 			<span class="slice" class:is-middle={slice === 3} style:--slice={slice}></span>
 		{/each}
 		<span class="face back" style:background-image="url({backURL})"></span>
 	</span>
-</button>
+</div>
 
 <style>
 	.card {
@@ -57,26 +85,28 @@
 		display: block;
 		width: 100%;
 		aspect-ratio: 1046 / 686;
-		padding: 0;
-		border: 0;
-		background: none;
 		perspective: 900px;
-		cursor: pointer;
+		cursor: grab;
+		touch-action: pan-y;
+		user-select: none;
+	}
+
+	.card:active {
+		cursor: grabbing;
 	}
 
 	.body {
-		--flip: 0deg;
 		position: relative;
 		display: block;
 		width: 100%;
 		height: 100%;
 		transform-style: preserve-3d;
-		transform: rotateX(var(--tilt-x)) rotateY(calc(var(--tilt-y) + var(--flip)));
+		transform: rotateX(var(--tilt-x)) rotateY(var(--turn));
 		transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
 	}
 
-	.body.is-flipped {
-		--flip: 180deg;
+	.body.is-dragging {
+		transition: none;
 	}
 
 	.face,
@@ -125,16 +155,6 @@
 
 	.slice.is-middle {
 		box-shadow: 0 10px 24px rgb(0 0 0 / 0.18);
-	}
-
-	.card:focus-visible {
-		outline: none;
-	}
-
-	.card:focus-visible .front,
-	.card:focus-visible .back {
-		outline: 2px solid var(--blue);
-		outline-offset: 3px;
 	}
 
 	@media (prefers-reduced-motion: reduce) {

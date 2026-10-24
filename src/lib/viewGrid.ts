@@ -45,11 +45,13 @@ out vec4 color;
 vec4 warpedView(vec2 cell) {
 	float layer = cell.y * gridSize.x + cell.x;
 	vec2 delta = target - (cell / (gridSize - 1.0) * 2.0 - 1.0);
+	float leftEdge = 3.0 / float(textureSize(views, 0).x);
 	vec2 coordinate = textureCoordinate;
 	for (int step = 0; step < 6; step++) {
 		float nearness = texture(depths, vec3(coordinate, layer)).r;
 		float inverse = mix(inverseDepth.y, inverseDepth.x, nearness);
 		coordinate = textureCoordinate + delta * parallaxScale * (inverse - inverseDepth.z);
+		coordinate.x = max(coordinate.x, leftEdge);
 	}
 	return texture(views, vec3(coordinate, layer));
 }

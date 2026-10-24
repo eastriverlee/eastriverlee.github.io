@@ -1,4 +1,5 @@
 <script lang="ts">
+	import BusinessCard from '$lib/components/BusinessCard.svelte';
 	import ParallaxPortrait from '$lib/components/ParallaxPortrait.svelte';
 	import type { ViewGrid } from '$lib/viewGrid';
 	import WorkList from '$lib/components/WorkList.svelte';
@@ -29,6 +30,14 @@
 			there is not much to say, <span class="highlight">really</span>.<br />
 			i code, draw type, write, design, box and invest.
 		</p>
+		<div class="card">
+			<BusinessCard
+				frontURL="/images/card-front.svg"
+				backURL="/images/card-back.svg"
+				label="business card: 이동하 (dan lee), cto at 여명거리"
+			/>
+			<p class="hint">drag to turn</p>
+		</div>
 	</div>
 	<div class="portrait">
 		<ParallaxPortrait
@@ -97,6 +106,17 @@
 	.lede {
 		margin-top: 24px;
 		max-width: 48ch;
+	}
+
+	.card {
+		max-width: 300px;
+		margin-top: 40px;
+	}
+
+	.hint {
+		margin-top: 8px;
+		font-size: 0.8125rem;
+		color: var(--muted);
 	}
 
 	.portrait {
