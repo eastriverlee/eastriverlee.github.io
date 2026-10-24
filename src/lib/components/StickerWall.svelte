@@ -4,16 +4,32 @@
 	let { stickers, label }: { stickers: Sticker[]; label: string } = $props();
 
 	const tiltsInDegrees = [-6, 4, -2, 7, -4, 3, -8, 2, 5, -3, 6, -5];
-	const liftsInPixels = [0, 18, -10, 8, -16, 12, 4, -6, 14, -12];
+	const cellInPixels = 20;
+	const stackingOrder = $derived(
+		new Map(
+			[...stickers]
+				.sort((first, second) => second.width * second.height - first.width * first.height)
+				.map((sticker, layer) => [sticker.name, layer])
+		)
+	);
+
+	function countCells(lengthInPixels: number): number {
+		return Math.max(1, Math.round(lengthInPixels / 2 / cellInPixels));
+	}
 
 	function placeSticker(sticker: Sticker, index: number): string {
 		const tilt = tiltsInDegrees[index % tiltsInDegrees.length];
-		const lift = liftsInPixels[index % liftsInPixels.length];
-		return `--width: ${sticker.width / 2}px; --tilt: ${tilt}deg; --lift: ${lift}px; z-index: ${(index * 7) % 11}`;
+		return [
+			`--width: ${sticker.width / 2}px`,
+			`--tilt: ${tilt}deg`,
+			`grid-column: span ${countCells(sticker.width)}`,
+			`grid-row: span ${countCells(sticker.height)}`,
+			`z-index: ${stackingOrder.get(sticker.name)}`
+		].join('; ');
 	}
 </script>
 
-<ul class="wall" aria-label={label}>
+<ul class="wall" aria-label={label} style="--cell-base: {cellInPixels}px">
 	{#each stickers as sticker, index (sticker.name)}
 		<li class:die-cut={sticker.isDieCut} style={placeSticker(sticker, index)}>
 			<a href={sticker.url} rel="external" title={sticker.name}>
@@ -32,12 +48,14 @@
 
 <style>
 	.wall {
-		--scale: 0.6;
+		--scale: 0.45;
+		--cell: calc(var(--cell-base) * var(--scale));
 		isolation: isolate;
-		display: flex;
-		flex-wrap: wrap;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, var(--cell));
+		grid-auto-rows: var(--cell);
+		grid-auto-flow: dense;
 		justify-content: center;
-		align-items: center;
 		margin: 48px 0 0;
 		padding: 24px 0;
 		list-style: none;
@@ -52,14 +70,15 @@
 	li {
 		position: relative;
 		width: calc(var(--width) * var(--scale));
-		margin: -6px -10px;
-		transform: translateY(calc(var(--lift) * var(--scale))) rotate(var(--tilt));
+		justify-self: center;
+		align-self: center;
+		transform: rotate(var(--tilt));
 		transition: transform 160ms ease-out;
 	}
 
 	li:hover,
 	li:focus-within {
-		transform: translateY(calc(var(--lift) * var(--scale))) rotate(var(--tilt)) scale(1.03);
+		transform: rotate(var(--tilt)) scale(1.03);
 	}
 
 	@media (prefers-reduced-motion: reduce) {
@@ -80,7 +99,6 @@
 		height: auto;
 		filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.35)) drop-shadow(0 6px 10px rgb(0 0 0 / 0.16));
 	}
-
 
 	.die-cut img {
 		filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.3)) drop-shadow(0 2px 4px rgb(0 0 0 / 0.14));
