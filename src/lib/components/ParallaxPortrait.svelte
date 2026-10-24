@@ -1,19 +1,19 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { pointerToUnitOffset, requiresOrientationPermission, tiltToUnitOffset, type Offset } from '$lib/motion';
-	import type { SplatCamera, SplatScene } from '$lib/splatScene';
+	import { createViewGridRenderer, loadSpriteLayers, type ViewGrid, type ViewGridRenderer } from '$lib/viewGrid';
 
 	type Props = {
 		photoURL: string;
-		splatURL: string;
-		camera: SplatCamera;
+		viewsURL: string;
+		depthsURL: string;
+		grid: ViewGrid;
 		alt: string;
 	};
 
-	let { photoURL, splatURL, camera, alt }: Props = $props();
+	let { photoURL, viewsURL, depthsURL, grid, alt }: Props = $props();
 
 	const easing = 0.08;
-	const settleFrames = 30;
 
 	let canvas: HTMLCanvasElement;
 	let isRendering = $state(false);
@@ -52,44 +52,45 @@
 		listenToOrientation();
 	}
 
-	function runAnimation(scene: SplatScene, element: HTMLCanvasElement): () => void {
+	function runAnimation(renderer: ViewGridRenderer, element: HTMLCanvasElement): () => void {
 		let current: Offset = { x: 0, y: 0 };
-		let framesSinceChange = 0;
 		let frame = 0;
 		const step = () => {
 			const next = {
 				x: current.x + (target.x - current.x) * easing,
 				y: current.y + (target.y - current.y) * easing
 			};
-			const hasMoved = Math.abs(next.x - current.x) + Math.abs(next.y - current.y) > 1e-4;
-			framesSinceChange = hasMoved ? 0 : framesSinceChange + 1;
-			current = next;
-			if (framesSinceChange < settleFrames) scene.render(current);
+			if (Math.abs(next.x - current.x) + Math.abs(next.y - current.y) > 1e-4) {
+				current = next;
+				renderer.render(current);
+			}
 			frame = requestAnimationFrame(step);
 		};
 		const resizeObserver = new ResizeObserver(() => {
-			scene.resize();
-			framesSinceChange = 0;
+			renderer.resize();
+			renderer.render(current);
 		});
 		resizeObserver.observe(element);
 		frame = requestAnimationFrame(step);
 		return () => {
 			cancelAnimationFrame(frame);
 			resizeObserver.disconnect();
-			scene.dispose();
+			renderer.dispose();
 		};
 	}
 
 	async function startRendering(isActive: () => boolean): Promise<() => void> {
 		const element = canvas;
-		const { createSplatScene } = await import('$lib/splatScene');
-		const scene = await createSplatScene(element, splatURL, camera);
+		const [views, depths] = await Promise.all([loadSpriteLayers(viewsURL, grid), loadSpriteLayers(depthsURL, grid)]);
+		const renderer = createViewGridRenderer(element, { views, depths }, grid);
+		if (!renderer) return () => {};
 		if (!isActive()) {
-			scene.dispose();
+			renderer.dispose();
 			return () => {};
 		}
+		renderer.render({ x: 0, y: 0 });
 		isRendering = true;
-		return runAnimation(scene, element);
+		return runAnimation(renderer, element);
 	}
 
 	onMount(() => {
@@ -107,8 +108,8 @@
 	});
 </script>
 
-<figure style:--zoom={camera.edgeZoom}>
-	<img src={photoURL} {alt} width="1200" height="1600" fetchpriority="high" />
+<figure>
+	<img src={photoURL} {alt} width="720" height="960" fetchpriority="high" />
 	<canvas bind:this={canvas} class:is-rendering={isRendering} aria-hidden="true"></canvas>
 	{#if needsMotionPermission}
 		<button type="button" onclick={enableMotion}>tilt to look around</button>
@@ -134,7 +135,6 @@
 
 	img {
 		object-fit: cover;
-		transform: scale(var(--zoom));
 	}
 
 	canvas {

@@ -1,15 +1,19 @@
 <script lang="ts">
-	import SplatPortrait from '$lib/components/SplatPortrait.svelte';
-	import type { SplatCamera } from '$lib/splatScene';
+	import ParallaxPortrait from '$lib/components/ParallaxPortrait.svelte';
+	import type { ViewGrid } from '$lib/viewGrid';
 	import WorkList from '$lib/components/WorkList.svelte';
 	import { links, siteTitle, works } from '$lib/site';
 
 	const currentWorks = works.filter((work) => work.isCurrent);
-	const portraitCamera: SplatCamera = {
-		verticalFieldOfViewInDegrees: 71.59,
-		focusDistanceInMeters: 0.59,
-		maximumTravelInMeters: 0.025,
-		edgeZoom: 1.1
+	const portraitGrid: ViewGrid = {
+		columns: 5,
+		rows: 5,
+		travelInMeters: 0.025,
+		focalLengthInImageHeights: 0.7625,
+		aspectRatio: 3 / 4,
+		nearestDepthInMeters: 0.35,
+		farthestDepthInMeters: 3.2,
+		focusDepthInMeters: 0.59
 	};
 </script>
 
@@ -27,10 +31,11 @@
 		</p>
 	</div>
 	<div class="portrait">
-		<SplatPortrait
+		<ParallaxPortrait
 			photoURL="/images/portrait.jpg"
-			splatURL="/images/portrait.spz"
-			camera={portraitCamera}
+			viewsURL="/images/portrait-views.webp"
+			depthsURL="/images/portrait-depths.webp"
+			grid={portraitGrid}
 			alt="eastriver eating dinner on a train, glancing back at the camera"
 		/>
 	</div>
