@@ -303,7 +303,7 @@ export const stickers: Sticker[] = [
 	{ name: 'kyobobooks', url: buildWikipediaURL('Kyobo Book Centre'), imageURL: '/images/stickers/kyobo.webp', width: 440, height: 318, isDieCut: true },
 	{ name: 'star trek: lower decks', url: buildWikipediaURL('Star Trek: Lower Decks'), imageURL: '/images/stickers/lower-decks.webp', width: 425, height: 110, isDieCut: true },
 	{ name: 'no starch press', url: buildWikipediaURL('No Starch Press'), imageURL: '/images/stickers/no-starch-press.webp', width: 435, height: 86, isDieCut: true },
-	{ name: 'arcane', url: buildWikipediaURL('Arcane (TV series)'), imageURL: '/images/stickers/arcane.webp', width: 422, height: 96, isDieCut: true }
+	{ name: 'arcane', url: buildWikipediaURL('Arcane (TV series)'), imageURL: '/images/stickers/arcane.webp', width: 145, height: 398, isDieCut: true }
 ];
 
 export const despised = ['conservatives', 'windows®', 'bloat', 'bothsidesism', 'yellow journalism'];
