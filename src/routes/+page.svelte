@@ -1,6 +1,5 @@
 <script lang="ts">
 	import BusinessCard from '$lib/components/BusinessCard.svelte';
-	import DeferredEmbed from '$lib/components/DeferredEmbed.svelte';
 	import ParallaxPortrait from '$lib/components/ParallaxPortrait.svelte';
 	import type { ViewGrid } from '$lib/viewGrid';
 	import WorkList from '$lib/components/WorkList.svelte';
@@ -82,13 +81,14 @@
 
 	<aside aria-labelledby="listening-label">
 		<h2 id="listening-label" class="section-label">listening</h2>
-		<DeferredEmbed
-			source={playlistEmbedURL}
+		<iframe
+			class="playlist"
+			src={playlistEmbedURL}
 			title="timeless, an apple music playlist"
-			label="timeless"
-			aspectRatio="3 / 4"
 			allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
-		/>
+			sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+			loading="lazy"
+		></iframe>
 	</aside>
 </div>
 
@@ -213,6 +213,13 @@
 	.dreams li::before {
 		content: '* ';
 		color: var(--blue);
+	}
+
+	.playlist {
+		display: block;
+		width: 100%;
+		height: 450px;
+		border: 2px solid var(--blue);
 	}
 
 	.born {
