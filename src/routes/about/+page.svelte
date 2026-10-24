@@ -1,4 +1,5 @@
 <script lang="ts">
+	import BusinessCard from '$lib/components/BusinessCard.svelte';
 	import DeferredEmbed from '$lib/components/DeferredEmbed.svelte';
 	import { despised, dreams, favorites, playlistEmbedURL, siteTitle } from '$lib/site';
 </script>
@@ -46,8 +47,14 @@
 		</section>
 	</div>
 
-	<aside aria-labelledby="listening-label">
-		<h2 id="listening-label" class="section-label">listening</h2>
+	<aside>
+		<h2 class="section-label">card</h2>
+		<BusinessCard
+			frontURL="/images/card-front.svg"
+			backURL="/images/card-back.svg"
+			label="business card: 이동하 (dan lee), cto at 여명거리. press to flip."
+		/>
+		<h2 id="listening-label" class="section-label listening-label">listening</h2>
 		<DeferredEmbed
 			source={playlistEmbedURL}
 			title="timeless, an apple music playlist"
@@ -78,6 +85,10 @@
 
 	section + section {
 		margin-top: 56px;
+	}
+
+	.listening-label {
+		margin-top: 40px;
 	}
 
 	.intro {
