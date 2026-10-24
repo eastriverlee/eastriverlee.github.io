@@ -247,7 +247,7 @@ export const favorites: Favorite[] = [
 		items: [
 			{ name: 'apple', url: buildWikipediaURL('Apple Inc.') },
 			{ name: 'lego', url: buildWikipediaURL('Lego') },
-			{ name: 'zsa' },
+			{ name: 'zsa', url: 'https://www.zsa.io' },
 			{ name: 'mozilla', url: buildWikipediaURL('Mozilla') },
 			{ name: "o'reilly", url: buildWikipediaURL("O'Reilly Media") },
 			{ name: 'no starch press', url: buildWikipediaURL('No Starch Press') }
