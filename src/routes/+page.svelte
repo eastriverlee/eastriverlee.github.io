@@ -26,7 +26,7 @@
 
 <section class="hero">
 	<div class="greeting">
-		<h1>hello world,<br />this is an eastriver's space<span class="cursor" aria-hidden="true"></span></h1>
+		<h1>hello world,<br />this is eastriver<span class="cursor" aria-hidden="true"></span></h1>
 		<p class="lede">
 			there is not much to say, <span class="highlight">really</span>.<br />
 			i code, draw type, write, design, box, invest, and do all the other stuff (…except for socializing).
