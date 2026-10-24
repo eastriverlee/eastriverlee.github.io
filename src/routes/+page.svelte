@@ -1,9 +1,10 @@
 <script lang="ts">
 	import BusinessCard from '$lib/components/BusinessCard.svelte';
 	import ParallaxPortrait from '$lib/components/ParallaxPortrait.svelte';
+	import StickerWall from '$lib/components/StickerWall.svelte';
 	import type { ViewGrid } from '$lib/viewGrid';
 	import WorkList from '$lib/components/WorkList.svelte';
-	import { despised, dreams, favorites, playlistEmbedURL, siteTitle, works } from '$lib/site';
+	import { despised, dreams, favorites, playlistEmbedURL, siteTitle, stickers, works } from '$lib/site';
 
 	const currentWorks = works.filter((work) => work.isCurrent);
 	const portraitGrid: ViewGrid = {
@@ -49,6 +50,8 @@
 		</div>
 	</div>
 </section>
+
+<StickerWall {stickers} label="things i love, stuck to the wall" />
 
 <div class="columns">
 	<div>

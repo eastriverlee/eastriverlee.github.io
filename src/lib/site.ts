@@ -31,6 +31,15 @@ export type Favorite = {
 	items: FavoriteItem[];
 };
 
+export type Sticker = {
+	name: string;
+	url: string;
+	imageURL: string;
+	width: number;
+	height: number;
+	isDieCut?: boolean;
+};
+
 function buildWikipediaURL(title: string, language = 'en'): string {
 	return `https://${language}.wikipedia.org/wiki/${encodeURIComponent(title.replaceAll(' ', '_'))}`;
 }
@@ -241,6 +250,39 @@ export const favorites: Favorite[] = [
 			{ name: 'no starch press', url: buildWikipediaURL('No Starch Press') }
 		]
 	}
+];
+
+export const stickers: Sticker[] = [
+	{ name: 'grim fandango', url: buildWikipediaURL('Grim Fandango'), imageURL: '/images/stickers/grim-fandango.webp', width: 270, height: 360 },
+	{ name: 'futurama', url: buildWikipediaURL('Futurama'), imageURL: '/images/stickers/futurama.webp', width: 436, height: 153, isDieCut: true },
+	{ name: 'pulp fiction', url: buildWikipediaURL('Pulp Fiction'), imageURL: '/images/stickers/pulp-fiction.webp', width: 244, height: 360 },
+	{ name: 'abbey road', url: buildWikipediaURL('Abbey Road'), imageURL: '/images/stickers/abbey-road.webp', width: 360, height: 360 },
+	{ name: 'mr. robot', url: buildWikipediaURL('Mr. Robot'), imageURL: '/images/stickers/mr-robot.webp', width: 424, height: 87, isDieCut: true },
+	{ name: 'the catcher in the rye', url: buildWikipediaURL('The Catcher in the Rye'), imageURL: '/images/stickers/the-catcher-in-the-rye.webp', width: 310, height: 360 },
+	{ name: 'the curse of monkey island', url: buildWikipediaURL('The Curse of Monkey Island'), imageURL: '/images/stickers/curse-of-monkey-island.webp', width: 269, height: 360 },
+	{ name: 'parasite', url: buildWikipediaURL('Parasite (2019 film)'), imageURL: '/images/stickers/parasite.webp', width: 252, height: 360 },
+	{ name: 'the simpsons', url: buildWikipediaURL('The Simpsons'), imageURL: '/images/stickers/the-simpsons.webp', width: 444, height: 208, isDieCut: true },
+	{ name: 'back to black', url: buildWikipediaURL('Back to Black'), imageURL: '/images/stickers/back-to-black.webp', width: 360, height: 360 },
+	{ name: 'exapunks', url: buildWikipediaURL('Exapunks'), imageURL: '/images/stickers/exapunks.webp', width: 360, height: 168 },
+	{ name: 'whiplash', url: buildWikipediaURL('Whiplash (2014 film)'), imageURL: '/images/stickers/whiplash.webp', width: 243, height: 360 },
+	{ name: 'friends', url: buildWikipediaURL('Friends'), imageURL: '/images/stickers/friends.webp', width: 444, height: 94, isDieCut: true },
+	{ name: 'i love katamari', url: buildWikipediaURL('I Love Katamari'), imageURL: '/images/stickers/i-love-katamari.webp', width: 360, height: 360 },
+	{ name: 'burning', url: buildWikipediaURL('Burning (2018 film)'), imageURL: '/images/stickers/burning.webp', width: 252, height: 360 },
+	{ name: 'rick and morty', url: buildWikipediaURL('Rick and Morty'), imageURL: '/images/stickers/rick-and-morty.webp', width: 444, height: 153, isDieCut: true },
+	{ name: 'la vie devant soi', url: buildWikipediaURL('The Life Before Us'), imageURL: '/images/stickers/the-life-before-us.webp', width: 248, height: 360 },
+	{ name: 'thimbleweed park', url: buildWikipediaURL('Thimbleweed Park'), imageURL: '/images/stickers/thimbleweed-park.webp', width: 301, height: 360 },
+	{ name: 'face/off', url: buildWikipediaURL('Face/Off'), imageURL: '/images/stickers/face-off.webp', width: 241, height: 360 },
+	{ name: 'evangelion', url: buildWikipediaURL('Neon Genesis Evangelion'), imageURL: '/images/stickers/evangelion.webp', width: 360, height: 132 },
+	{ name: 'juno', url: buildWikipediaURL('Juno (Remi Wolf album)'), imageURL: '/images/stickers/juno.webp', width: 360, height: 360 },
+	{ name: "bob's burgers", url: buildWikipediaURL("Bob's Burgers"), imageURL: '/images/stickers/bobs-burgers.webp', width: 444, height: 157, isDieCut: true },
+	{ name: 'my mister', url: buildWikipediaURL('My Mister'), imageURL: '/images/stickers/my-mister.webp', width: 360, height: 248 },
+	{ name: 'sonic adventure', url: buildWikipediaURL('Sonic Adventure'), imageURL: '/images/stickers/sonic-adventure.webp', width: 360, height: 356 },
+	{ name: 'garden state', url: buildWikipediaURL('Garden State (film)'), imageURL: '/images/stickers/garden-state.webp', width: 243, height: 360 },
+	{ name: 'the office', url: buildWikipediaURL('The Office (American TV series)'), imageURL: '/images/stickers/the-office.webp', width: 444, height: 93, isDieCut: true },
+	{ name: 'ftl', url: buildWikipediaURL('FTL: Faster Than Light'), imageURL: '/images/stickers/ftl.webp', width: 360, height: 118 },
+	{ name: 'matchstick men', url: buildWikipediaURL('Matchstick Men'), imageURL: '/images/stickers/matchstick-men.webp', width: 243, height: 360 },
+	{ name: 'star trek: lower decks', url: buildWikipediaURL('Star Trek: Lower Decks'), imageURL: '/images/stickers/lower-decks.webp', width: 428, height: 112, isDieCut: true },
+	{ name: 'arcane', url: buildWikipediaURL('Arcane (TV series)'), imageURL: '/images/stickers/arcane.webp', width: 426, height: 96, isDieCut: true }
 ];
 
 export const despised = ['conservatives', 'windows®', 'bloat', 'bothsidesism', 'yellow journalism'];
