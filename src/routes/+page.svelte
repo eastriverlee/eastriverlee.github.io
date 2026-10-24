@@ -1,9 +1,10 @@
 <script lang="ts">
 	import BusinessCard from '$lib/components/BusinessCard.svelte';
+	import DeferredEmbed from '$lib/components/DeferredEmbed.svelte';
 	import ParallaxPortrait from '$lib/components/ParallaxPortrait.svelte';
 	import type { ViewGrid } from '$lib/viewGrid';
 	import WorkList from '$lib/components/WorkList.svelte';
-	import { siteTitle, works } from '$lib/site';
+	import { despised, dreams, favorites, playlistEmbedURL, siteTitle, works } from '$lib/site';
 
 	const currentWorks = works.filter((work) => work.isCurrent);
 	const portraitGrid: ViewGrid = {
@@ -28,7 +29,7 @@
 		<h1>hello world,<br />this is an eastriver's space<span class="cursor" aria-hidden="true"></span></h1>
 		<p class="lede">
 			there is not much to say, <span class="highlight">really</span>.<br />
-			i code, draw type, write, design, box and invest.
+			i code, draw type, write, design, box, invest, and do all the other stuff (…except for socializing).
 		</p>
 	</div>
 	<div class="portrait">
@@ -49,6 +50,47 @@
 		</div>
 	</div>
 </section>
+
+<div class="columns">
+	<div>
+		<section aria-labelledby="favorites-label">
+			<h2 id="favorites-label" class="section-label">favorites</h2>
+			<dl>
+				{#each favorites as favorite (favorite.category)}
+					<div>
+						<dt>{favorite.category}</dt>
+						<dd>{favorite.items.join(', ')}</dd>
+					</div>
+				{/each}
+				<div>
+					<dt>despise</dt>
+					<dd>{despised.join(', ')}</dd>
+				</div>
+			</dl>
+		</section>
+
+		<section aria-labelledby="dreams-label">
+			<h2 id="dreams-label" class="section-label">dreams</h2>
+			<ul class="dreams">
+				{#each dreams as dream (dream)}
+					<li>{dream}</li>
+				{/each}
+			</ul>
+			<p class="born">i was born twenty-six years after there was a giant leap for mankind.</p>
+		</section>
+	</div>
+
+	<aside aria-labelledby="listening-label">
+		<h2 id="listening-label" class="section-label">listening</h2>
+		<DeferredEmbed
+			source={playlistEmbedURL}
+			title="timeless, an apple music playlist"
+			label="timeless"
+			aspectRatio="3 / 4"
+			allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
+		/>
+	</aside>
+</div>
 
 <section aria-labelledby="now-label">
 	<h2 id="now-label" class="section-label">now</h2>
@@ -128,6 +170,54 @@
 		.hero {
 			grid-template-columns: 1fr 340px;
 		}
+	}
+
+	.columns {
+		display: grid;
+		gap: 56px;
+		margin: 64px 0;
+	}
+
+	@media (min-width: 880px) {
+		.columns {
+			grid-template-columns: 1fr 300px;
+		}
+
+		aside {
+			position: sticky;
+			top: var(--sticky-top);
+			align-self: start;
+		}
+	}
+
+	dl {
+		margin: 0;
+	}
+
+	dl > div {
+		display: grid;
+		grid-template-columns: 12ch 1fr;
+		column-gap: 2ch;
+		padding: 8px 0;
+		border-top: 1px solid var(--rule);
+	}
+
+	dt {
+		color: var(--muted);
+	}
+
+	dd {
+		margin: 0;
+	}
+
+	.dreams li::before {
+		content: '* ';
+		color: var(--blue);
+	}
+
+	.born {
+		margin-top: 24px;
+		max-width: 56ch;
 	}
 
 	.more {

@@ -7,8 +7,7 @@
 
 	const navigation = [
 		{ label: 'works', path: '/works' },
-		{ label: 'writing', path: '/writing' },
-		{ label: 'about', path: '/about' }
+		{ label: 'writing', path: '/writing' }
 	];
 
 	function isActive(path: string): boolean {
