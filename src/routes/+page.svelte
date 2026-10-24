@@ -30,14 +30,6 @@
 			there is not much to say, <span class="highlight">really</span>.<br />
 			i code, draw type, write, design, box and invest.
 		</p>
-		<div class="card">
-			<BusinessCard
-				frontURL="/images/card-front.svg"
-				backURL="/images/card-back.svg"
-				label="business card: 이동하 (dan lee), cto at 여명거리"
-			/>
-			<p class="hint">drag to turn</p>
-		</div>
 	</div>
 	<div class="portrait">
 		<ParallaxPortrait
@@ -47,6 +39,14 @@
 			grid={portraitGrid}
 			alt="eastriver eating dinner on a train, glancing back at the camera"
 		/>
+		<div class="card">
+			<BusinessCard
+				frontURL="/images/card-front.svg"
+				backURL="/images/card-back.svg"
+				label="business card: 이동하 (dan lee), cto at 여명거리"
+			/>
+			<p class="hint">drag to turn</p>
+		</div>
 	</div>
 </section>
 
@@ -108,9 +108,17 @@
 		max-width: 48ch;
 	}
 
+	.portrait {
+		position: relative;
+		max-width: 420px;
+		margin-bottom: 96px;
+	}
+
 	.card {
-		max-width: 300px;
-		margin-top: 40px;
+		position: absolute;
+		left: 16px;
+		bottom: -96px;
+		width: 70%;
 	}
 
 	.hint {
@@ -119,8 +127,10 @@
 		color: var(--muted);
 	}
 
-	.portrait {
-		max-width: 420px;
+	@media (min-width: 880px) {
+		.card {
+			left: -48px;
+		}
 	}
 
 	@media (min-width: 880px) {
