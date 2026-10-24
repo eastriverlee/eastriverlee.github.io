@@ -175,7 +175,7 @@ export const favorites: Favorite[] = [
 			{ name: 'bitgwasoeum' },
 			{ name: 'wedance' },
 			{ name: 'the symposium', url: buildWikipediaURL('The Symposium (band)') },
-			{ name: 'mitsume', url: buildWikipediaURL('ミツメ', 'ja') },
+			{ name: 'mitsume', url: 'https://mitsume.me' },
 			{ name: 'remi wolf', url: buildWikipediaURL('Remi Wolf') }
 		]
 	},
@@ -268,7 +268,7 @@ export const stickers: Sticker[] = [
 	{ name: 'apple', url: buildWikipediaURL('Apple Inc.'), imageURL: '/images/stickers/apple.webp', width: 214, height: 261, isDieCut: true },
 	{ name: 'parasite', url: buildWikipediaURL('Parasite (2019 film)'), imageURL: '/images/stickers/parasite.webp', width: 257, height: 365 },
 	{ name: 'the simpsons', url: buildWikipediaURL('The Simpsons'), imageURL: '/images/stickers/the-simpsons.webp', width: 440, height: 206, isDieCut: true },
-	{ name: 'a long day', url: buildWikipediaURL('ミツメ', 'ja'), imageURL: '/images/stickers/mitsume-a-long-day.webp', width: 367, height: 365 },
+	{ name: 'eye', url: 'https://mitsume.me', imageURL: '/images/stickers/mitsume-eye.webp', width: 366, height: 366 },
 	{ name: 'back to black', url: buildWikipediaURL('Back to Black'), imageURL: '/images/stickers/back-to-black.webp', width: 367, height: 366 },
 	{ name: 'go', url: buildWikipediaURL('Go (programming language)'), imageURL: '/images/stickers/go.webp', width: 441, height: 180, isDieCut: true },
 	{ name: 'exapunks', url: buildWikipediaURL('Exapunks'), imageURL: '/images/stickers/exapunks.webp', width: 365, height: 173 },
