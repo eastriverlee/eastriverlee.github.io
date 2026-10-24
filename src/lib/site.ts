@@ -294,7 +294,7 @@ export const stickers: Sticker[] = [
 	{ name: 'juno', url: buildWikipediaURL('Juno (Remi Wolf album)'), imageURL: '/images/stickers/juno.webp', width: 226, height: 225 },
 	{ name: "bob's burgers", url: buildWikipediaURL("Bob's Burgers"), imageURL: '/images/stickers/bobs-burgers.webp', width: 139, height: 387, isDieCut: true },
 	{ name: 'coursera', url: buildWikipediaURL('Coursera'), imageURL: '/images/stickers/coursera.webp', width: 441, height: 82, isDieCut: true },
-	{ name: 'my mister', url: buildWikipediaURL('My Mister'), imageURL: '/images/stickers/my-mister.webp', width: 737, height: 511 },
+	{ name: 'my mister', url: buildWikipediaURL('My Mister'), imageURL: '/images/stickers/my-mister.webp', width: 511, height: 738 },
 	{ name: 'dance pop', url: 'https://music.apple.com/album/1522655223', imageURL: '/images/stickers/wedance-dance-pop.webp', width: 225, height: 223 },
 	{ name: 'zsa', url: 'https://www.zsa.io', imageURL: '/images/stickers/zsa.webp', width: 299, height: 102, isDieCut: true },
 	{ name: 'garden state', url: buildWikipediaURL('Garden State (film)'), imageURL: '/images/stickers/garden-state.webp', width: 500, height: 739 },
