@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 	import { page } from '$app/state';
-	import { siteDescription } from '$lib/site';
+	import { links, siteDescription } from '$lib/site';
 
 	let { children } = $props();
 
@@ -44,9 +44,13 @@
 	{@render children()}
 </main>
 
-<footer class="band band-blue">
+<footer class="band band-blue site-footer">
 	<div class="band-inner">
-		<p>svelte+css written in vim; because i'm a simple man.</p>
+		<ul class="elsewhere">
+			{#each links as link (link.url)}
+				<li><a href={link.url}>{link.label}</a></li>
+			{/each}
+		</ul>
 		<p><a href="mailto:lee@eastriver.dev">lee@eastriver.dev</a></p>
 	</div>
 </footer>
@@ -68,6 +72,23 @@
 		position: sticky;
 		top: 0;
 		z-index: 2;
+	}
+
+	.site-footer {
+		position: sticky;
+		bottom: 0;
+		z-index: 2;
+	}
+
+	.site-footer .band-inner {
+		row-gap: 4px;
+	}
+
+	.elsewhere {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 4px 20px;
+		font-size: 0.875rem;
 	}
 
 	.band {
@@ -115,6 +136,8 @@
 	}
 
 	main {
+		flex: 1;
+		width: 100%;
 		max-width: calc(var(--measure) + 2 * var(--gutter) + 28ch);
 		margin: 0 auto;
 		padding: clamp(32px, 6vw, 72px) var(--gutter) 96px;

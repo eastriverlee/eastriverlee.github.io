@@ -3,7 +3,7 @@
 	import ParallaxPortrait from '$lib/components/ParallaxPortrait.svelte';
 	import type { ViewGrid } from '$lib/viewGrid';
 	import WorkList from '$lib/components/WorkList.svelte';
-	import { links, siteTitle, works } from '$lib/site';
+	import { siteTitle, works } from '$lib/site';
 
 	const currentWorks = works.filter((work) => work.isCurrent);
 	const portraitGrid: ViewGrid = {
@@ -54,15 +54,6 @@
 	<h2 id="now-label" class="section-label">now</h2>
 	<WorkList works={currentWorks} />
 	<p class="more"><a href="/works">all works →</a></p>
-</section>
-
-<section aria-labelledby="elsewhere-label">
-	<h2 id="elsewhere-label" class="section-label">elsewhere</h2>
-	<ul class="links">
-		{#each links as link (link.url)}
-			<li><a href={link.url}>{link.label}</a></li>
-		{/each}
-	</ul>
 </section>
 
 <style>
@@ -142,15 +133,5 @@
 	.more {
 		margin-top: 12px;
 		text-align: right;
-	}
-
-	.links {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 8px 24px;
-	}
-
-	.links a::before {
-		content: '→ ';
 	}
 </style>

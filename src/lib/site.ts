@@ -124,8 +124,9 @@ export const works: Work[] = [
 
 export const links: Link[] = [
 	{ label: 'github', url: 'https://github.com/eastriverlee' },
-	{ label: 'itch.io', url: 'https://eastriverlee.itch.io' },
-	{ label: 'mail', url: 'mailto:lee@eastriver.dev' }
+	{ label: 'linkedin', url: 'https://www.linkedin.com/in/eastriver' },
+	{ label: 'twitter', url: 'https://twitter.com/3astriver' },
+	{ label: 'itch.io', url: 'https://eastriverlee.itch.io' }
 ];
 
 export const favorites: Favorite[] = [
