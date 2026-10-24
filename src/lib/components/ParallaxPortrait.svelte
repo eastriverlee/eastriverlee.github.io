@@ -16,6 +16,8 @@
 	const easing = 0.08;
 
 	let canvas: HTMLCanvasElement;
+	let edge: HTMLCanvasElement;
+	let photo: HTMLImageElement;
 	let isRendering = $state(false);
 	let needsMotionPermission = $state(false);
 	let target: Offset = { x: 0, y: 0 };
@@ -52,6 +54,20 @@
 		listenToOrientation();
 	}
 
+	function copyEdgeColumn(source: CanvasImageSource, sourceHeight: number) {
+		if (edge.height !== sourceHeight) edge.height = sourceHeight;
+		edge.getContext('2d')?.drawImage(source, 0, 0, 1, sourceHeight, 0, 0, 1, sourceHeight);
+	}
+
+	function copyPhotoEdge() {
+		copyEdgeColumn(photo, photo.naturalHeight);
+	}
+
+	function renderFrame(renderer: ViewGridRenderer, offset: Offset, element: HTMLCanvasElement) {
+		renderer.render(offset);
+		copyEdgeColumn(element, element.height);
+	}
+
 	function runAnimation(renderer: ViewGridRenderer, element: HTMLCanvasElement): () => void {
 		let current: Offset = { x: 0, y: 0 };
 		let frame = 0;
@@ -62,13 +78,13 @@
 			};
 			if (Math.abs(next.x - current.x) + Math.abs(next.y - current.y) > 1e-4) {
 				current = next;
-				renderer.render(current);
+				renderFrame(renderer, current, element);
 			}
 			frame = requestAnimationFrame(step);
 		};
 		const resizeObserver = new ResizeObserver(() => {
 			renderer.resize();
-			renderer.render(current);
+			renderFrame(renderer, current, element);
 		});
 		resizeObserver.observe(element);
 		frame = requestAnimationFrame(step);
@@ -88,12 +104,13 @@
 			renderer.dispose();
 			return () => {};
 		}
-		renderer.render({ x: 0, y: 0 });
+		renderFrame(renderer, { x: 0, y: 0 }, element);
 		isRendering = true;
 		return runAnimation(renderer, element);
 	}
 
 	onMount(() => {
+		if (photo.complete) copyPhotoEdge();
 		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 		let isMounted = true;
 		const stopRendering = startRendering(() => isMounted);
@@ -108,8 +125,9 @@
 	});
 </script>
 
+<canvas bind:this={edge} class="edge" width="1" height="960" aria-hidden="true"></canvas>
 <figure>
-	<img src={photoURL} {alt} width="720" height="960" fetchpriority="high" />
+	<img bind:this={photo} src={photoURL} {alt} width="720" height="960" fetchpriority="high" onload={copyPhotoEdge} />
 	<canvas bind:this={canvas} class:is-rendering={isRendering} aria-hidden="true"></canvas>
 	{#if needsMotionPermission}
 		<button type="button" onclick={enableMotion}>tilt to look around</button>
@@ -117,6 +135,15 @@
 </figure>
 
 <style>
+	.edge {
+		position: absolute;
+		top: 0;
+		right: calc(100% - 1px);
+		z-index: -1;
+		width: 100vw;
+		height: 100%;
+	}
+
 	figure {
 		position: relative;
 		margin: 0;
@@ -126,7 +153,7 @@
 	}
 
 	img,
-	canvas {
+	figure canvas {
 		position: absolute;
 		inset: 0;
 		width: 100%;
@@ -137,12 +164,12 @@
 		object-fit: cover;
 	}
 
-	canvas {
+	figure canvas {
 		opacity: 0;
 		transition: opacity 0.4s ease-out;
 	}
 
-	canvas.is-rendering {
+	figure canvas.is-rendering {
 		opacity: 1;
 	}
 

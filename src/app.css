@@ -54,6 +54,7 @@
 
 html {
 	overscroll-behavior: none;
+	overflow-x: clip;
 }
 
 body {
@@ -61,7 +62,6 @@ body {
 	flex-direction: column;
 	margin: 0;
 	min-height: 100dvh;
-	background: var(--paper);
 	-webkit-font-smoothing: antialiased;
 }
 
