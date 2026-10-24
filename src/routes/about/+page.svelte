@@ -71,7 +71,7 @@
 
 		aside {
 			position: sticky;
-			top: 24px;
+			top: var(--sticky-top);
 			align-self: start;
 		}
 	}

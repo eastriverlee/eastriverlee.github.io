@@ -45,7 +45,7 @@ export const works: Work[] = [
 		isCurrent: true
 	},
 	{
-		name: 'Omnlet',
+		name: 'omnlet',
 		kind: 'app',
 		since: 2026,
 		summary: 'practice words and generated sentences in many languages, with spaced review and offline voices.',

@@ -25,7 +25,7 @@
 
 <a class="skip-link visually-hidden" href="#content">skip to content</a>
 
-<header class="band">
+<header class="band site-header">
 	<div class="band-inner">
 		<a class="wordmark" href="/" aria-current={page.url.pathname === '/' ? 'page' : undefined}>eastriver</a>
 		<nav aria-label="main">
@@ -61,6 +61,12 @@
 		clip-path: none;
 		padding: 8px 12px;
 		background: var(--paper);
+		z-index: 3;
+	}
+
+	.site-header {
+		position: sticky;
+		top: 0;
 		z-index: 2;
 	}
 
