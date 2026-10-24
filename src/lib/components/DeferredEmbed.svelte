@@ -31,7 +31,7 @@
 <style>
 	.frame {
 		width: 100%;
-		background: #000000;
+		background: var(--black);
 		border: 2px solid var(--blue);
 	}
 
@@ -50,11 +50,11 @@
 		justify-content: center;
 		gap: 12px;
 		font: inherit;
-		color: #ffffff;
+		color: var(--white);
 		background: transparent center / cover no-repeat;
 		border: 0;
 		cursor: pointer;
-		text-shadow: 0 1px 2px #000000;
+		text-shadow: 0 1px 2px var(--black);
 	}
 
 	button:hover .play {
@@ -66,7 +66,7 @@
 		place-items: center;
 		width: 2.5em;
 		height: 2.5em;
-		border: 2px solid #ffffff;
-		background: #000000;
+		border: 2px solid var(--white);
+		background: var(--black);
 	}
 </style>

@@ -15,16 +15,20 @@
 
 :root {
 	color-scheme: light dark;
-	--paper: #ffffff;
-	--ink: #121212;
-	--muted: #6b6b6b;
-	--rule: #d6d6d6;
-	--band: #121212;
-	--band-ink: #ffffff;
+	--black: #121212;
+	--white: #ffffff;
+	--gray: #767676;
 	--blue: #1212cc;
-	--blue-ink: #00b4c8;
+	--cyan: #00b4c8;
 	--red: #cc1212;
-	--link: #1212cc;
+	--paper: var(--white);
+	--ink: var(--black);
+	--muted: var(--gray);
+	--rule: var(--gray);
+	--band: var(--black);
+	--band-ink: var(--white);
+	--blue-ink: var(--cyan);
+	--link: var(--blue);
 	--measure: 72ch;
 	--gutter: clamp(16px, 4vw, 40px);
 	--sticky-top: 80px;
@@ -37,12 +41,9 @@
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--paper: #0e0e10;
-		--ink: #e4e4e4;
-		--muted: #8a8a8a;
-		--rule: #2a2a2e;
-		--band: #000000;
-		--link: #8c8cff;
+		--paper: var(--black);
+		--ink: var(--white);
+		--link: var(--cyan);
 	}
 }
 
@@ -113,7 +114,7 @@ ul {
 
 .highlight {
 	background: var(--red);
-	color: #ffffff;
+	color: var(--white);
 	padding: 0 0.35em;
 }
 

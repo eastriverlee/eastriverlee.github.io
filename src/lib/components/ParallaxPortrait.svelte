@@ -149,7 +149,7 @@
 		margin: 0;
 		aspect-ratio: 3 / 4;
 		overflow: hidden;
-		background: #000000;
+		background: var(--black);
 	}
 
 	img,
@@ -180,7 +180,7 @@
 		padding: 6px 10px;
 		font: inherit;
 		font-size: 0.8125rem;
-		color: #ffffff;
+		color: var(--white);
 		background: var(--blue);
 		border: 0;
 		cursor: pointer;

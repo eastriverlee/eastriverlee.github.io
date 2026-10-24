@@ -124,8 +124,8 @@
 	}
 
 	nav a:hover {
-		background: #cccccc;
-		color: #121212;
+		background: var(--gray);
+		color: var(--white);
 		text-decoration: none;
 	}
 
