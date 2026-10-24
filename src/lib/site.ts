@@ -298,7 +298,7 @@ export const stickers: Sticker[] = [
 	{ name: 'garden state', url: buildWikipediaURL('Garden State (film)'), imageURL: '/images/stickers/garden-state.webp', width: 249, height: 366 },
 	{ name: 'the office', url: buildWikipediaURL('The Office (American TV series)'), imageURL: '/images/stickers/the-office.webp', width: 441, height: 90, isDieCut: true },
 	{ name: "o'reilly", url: buildWikipediaURL("O'Reilly Media"), imageURL: '/images/stickers/oreilly.webp', width: 441, height: 96, isDieCut: true },
-	{ name: 'ftl', url: buildWikipediaURL('FTL: Faster Than Light'), imageURL: '/images/stickers/ftl.webp', width: 366, height: 123 },
+	{ name: 'ftl', url: buildWikipediaURL('FTL: Faster Than Light'), imageURL: '/images/stickers/ftl.webp', width: 431, height: 386, isDieCut: true },
 	{ name: 'matchstick men', url: buildWikipediaURL('Matchstick Men'), imageURL: '/images/stickers/matchstick-men.webp', width: 247, height: 364 },
 	{ name: 'kyobobooks', url: buildWikipediaURL('Kyobo Book Centre'), imageURL: '/images/stickers/kyobo.webp', width: 440, height: 318, isDieCut: true },
 	{ name: 'star trek: lower decks', url: buildWikipediaURL('Star Trek: Lower Decks'), imageURL: '/images/stickers/lower-decks.webp', width: 425, height: 110, isDieCut: true },
