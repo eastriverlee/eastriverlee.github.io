@@ -1,9 +1,16 @@
 <script lang="ts">
-	import SpatialPortrait from '$lib/components/SpatialPortrait.svelte';
+	import SplatPortrait from '$lib/components/SplatPortrait.svelte';
+	import type { SplatCamera } from '$lib/splatScene';
 	import WorkList from '$lib/components/WorkList.svelte';
 	import { links, siteTitle, works } from '$lib/site';
 
 	const currentWorks = works.filter((work) => work.isCurrent);
+	const portraitCamera: SplatCamera = {
+		verticalFieldOfViewInDegrees: 71.59,
+		focusDistanceInMeters: 0.59,
+		maximumTravelInMeters: 0.025,
+		edgeZoom: 1.1
+	};
 </script>
 
 <svelte:head>
@@ -20,12 +27,10 @@
 		</p>
 	</div>
 	<div class="portrait">
-		<SpatialPortrait
+		<SplatPortrait
 			photoURL="/images/portrait.jpg"
-			foregroundURL="/images/portrait-foreground.jpg"
-			backgroundURL="/images/portrait-background.jpg"
-			layersURL="/images/portrait-layers.png"
-			focusDepth={0.82}
+			splatURL="/images/portrait.spz"
+			camera={portraitCamera}
 			alt="eastriver eating dinner on a train, glancing back at the camera"
 		/>
 	</div>

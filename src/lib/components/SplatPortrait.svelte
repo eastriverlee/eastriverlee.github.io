@@ -1,29 +1,19 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import {
-		createSpatialRenderer,
-		loadImage,
-		pointerToUnitOffset,
-		requiresOrientationPermission,
-		tiltToUnitOffset,
-		zoom,
-		type Offset,
-		type SpatialRenderer
-	} from '$lib/spatial';
+	import { pointerToUnitOffset, requiresOrientationPermission, tiltToUnitOffset, type Offset } from '$lib/motion';
+	import type { SplatCamera, SplatScene } from '$lib/splatScene';
 
 	type Props = {
 		photoURL: string;
-		foregroundURL: string;
-		backgroundURL: string;
-		layersURL: string;
-		focusDepth: number;
+		splatURL: string;
+		camera: SplatCamera;
 		alt: string;
 	};
 
-	let { photoURL, foregroundURL, backgroundURL, layersURL, focusDepth, alt }: Props = $props();
+	let { photoURL, splatURL, camera, alt }: Props = $props();
 
-	const maximumOffset = 0.05;
 	const easing = 0.08;
+	const settleFrames = 30;
 
 	let canvas: HTMLCanvasElement;
 	let isRendering = $state(false);
@@ -31,19 +21,15 @@
 	let target: Offset = { x: 0, y: 0 };
 	let orientationBaseline: DeviceOrientationEvent | undefined;
 
-	function aimAt(unitOffset: Offset) {
-		target = { x: unitOffset.x * maximumOffset, y: unitOffset.y * maximumOffset };
-	}
-
 	function handlePointerMove(event: PointerEvent) {
 		if (event.pointerType !== 'mouse') return;
-		aimAt(pointerToUnitOffset(event));
+		target = pointerToUnitOffset(event);
 	}
 
 	function handleOrientation(event: DeviceOrientationEvent) {
 		if (event.gamma === null || event.beta === null) return;
 		orientationBaseline ??= event;
-		aimAt(tiltToUnitOffset(event, orientationBaseline));
+		target = tiltToUnitOffset(event, orientationBaseline);
 	}
 
 	function listenToOrientation() {
@@ -66,56 +52,62 @@
 		listenToOrientation();
 	}
 
-	function runAnimation(renderer: SpatialRenderer): () => void {
+	function runAnimation(scene: SplatScene, element: HTMLCanvasElement): () => void {
 		let current: Offset = { x: 0, y: 0 };
+		let framesSinceChange = 0;
 		let frame = 0;
 		const step = () => {
 			const next = {
 				x: current.x + (target.x - current.x) * easing,
 				y: current.y + (target.y - current.y) * easing
 			};
-			if (Math.abs(next.x - current.x) + Math.abs(next.y - current.y) > 1e-5) {
-				current = next;
-				renderer.render(current);
-			}
+			const hasMoved = Math.abs(next.x - current.x) + Math.abs(next.y - current.y) > 1e-4;
+			framesSinceChange = hasMoved ? 0 : framesSinceChange + 1;
+			current = next;
+			if (framesSinceChange < settleFrames) scene.render(current);
 			frame = requestAnimationFrame(step);
 		};
 		const resizeObserver = new ResizeObserver(() => {
-			renderer.resize();
-			renderer.render(current);
+			scene.resize();
+			framesSinceChange = 0;
 		});
-		renderer.render(current);
-		resizeObserver.observe(canvas);
+		resizeObserver.observe(element);
 		frame = requestAnimationFrame(step);
 		return () => {
 			cancelAnimationFrame(frame);
 			resizeObserver.disconnect();
-			renderer.dispose();
+			scene.dispose();
 		};
 	}
 
-	async function startRendering(): Promise<(() => void) | undefined> {
-		const [foreground, background, layers] = await Promise.all([foregroundURL, backgroundURL, layersURL].map(loadImage));
-		const renderer = createSpatialRenderer(canvas, { foreground, background, layers }, focusDepth);
-		if (!renderer) return undefined;
+	async function startRendering(isActive: () => boolean): Promise<() => void> {
+		const element = canvas;
+		const { createSplatScene } = await import('$lib/splatScene');
+		const scene = await createSplatScene(element, splatURL, camera);
+		if (!isActive()) {
+			scene.dispose();
+			return () => {};
+		}
 		isRendering = true;
-		return runAnimation(renderer);
+		return runAnimation(scene, element);
 	}
 
 	onMount(() => {
 		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-		const stopRendering = startRendering();
+		let isMounted = true;
+		const stopRendering = startRendering(() => isMounted);
 		window.addEventListener('pointermove', handlePointerMove);
 		startOrientation();
 		return () => {
-			stopRendering.then((stop) => stop?.());
+			isMounted = false;
+			stopRendering.then((stop) => stop());
 			window.removeEventListener('pointermove', handlePointerMove);
 			window.removeEventListener('deviceorientation', handleOrientation);
 		};
 	});
 </script>
 
-<figure style:--zoom={zoom}>
+<figure style:--zoom={camera.edgeZoom}>
 	<img src={photoURL} {alt} width="1200" height="1600" fetchpriority="high" />
 	<canvas bind:this={canvas} class:is-rendering={isRendering} aria-hidden="true"></canvas>
 	{#if needsMotionPermission}
