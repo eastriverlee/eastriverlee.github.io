@@ -12,6 +12,8 @@ export type Work = {
 	isCurrent?: boolean;
 	specimenSVG?: string;
 	youtubeID?: string;
+	medium?: string;
+	durationInSeconds?: number;
 };
 
 export type Link = {
@@ -110,14 +112,19 @@ export const works: Work[] = [
 		specimenSVG: hesalcheSpecimen
 	},
 	{
-		name: 'the weight of goldilocks',
+		name: '(an rgb display of)(a video of)the weight of goldilocks',
 		kind: 'film',
-		summary: '(an rgb display of)(a video of)the weight of goldilocks.',
+		since: 2018,
+		medium: 'single-channel video',
+		durationInSeconds: 522,
 		youtubeID: 'deP_KRzFTsY'
 	},
 	{
-		name: '동산에 올라',
+		name: '(an rgb display of)(a video of)동산에 올라',
 		kind: 'film',
+		since: 2020,
+		medium: 'single-channel video',
+		durationInSeconds: 951,
 		youtubeID: 'cqutxaAJRtE'
 	}
 ];
@@ -179,4 +186,4 @@ export const dreams = [
 	'better media'
 ];
 
-export const playlistEmbedURL = 'https://embed.music.apple.com/us/playlist/timeless/pl.u-b6jBsdbKd5p';
+export const playlistEmbedURL = 'https://embed.music.apple.com/us/playlist/eastriver/pl.u-YW7pF1kg1Z5';

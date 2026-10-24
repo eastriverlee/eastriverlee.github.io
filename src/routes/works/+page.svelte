@@ -7,6 +7,11 @@
 	const fonts = works.filter((work) => work.kind === 'font');
 	const films = works.filter((work) => work.kind === 'film');
 
+	function formatDuration(totalSeconds: number) {
+		const minutes = Math.floor(totalSeconds / 60);
+		return `${minutes} min ${totalSeconds % 60} sec`;
+	}
+
 	function worksOfKind(kind: WorkKind) {
 		return works.filter((work) => work.kind === kind);
 	}
@@ -56,10 +61,14 @@
 					aspectRatio="16 / 9"
 					posterURL="https://i.ytimg.com/vi/{film.youtubeID}/hqdefault.jpg"
 				/>
-				<h3>{film.name}</h3>
-				{#if film.summary}
-					<p>{film.summary}</p>
-				{/if}
+				<div class="label">
+					<p class="artist">eastriver <span>(b. 1995)</span></p>
+					<h3><cite>{film.name}</cite>, {film.since}</h3>
+					<p>{film.medium}</p>
+					{#if film.durationInSeconds}
+						<p>{formatDuration(film.durationInSeconds)}</p>
+					{/if}
+				</div>
 			</article>
 		{/each}
 	</div>
@@ -107,6 +116,35 @@
 		height: clamp(72px, 14vw, 112px);
 		width: auto;
 		max-width: 100%;
+	}
+
+	.label {
+		margin-top: 16px;
+		font-size: 0.875rem;
+		line-height: 1.5;
+	}
+
+	.label h3 {
+		margin: 0;
+		font-size: inherit;
+		font-weight: 400;
+		line-height: inherit;
+	}
+
+	.label cite {
+		font-style: italic;
+	}
+
+	.artist {
+		font-weight: 700;
+	}
+
+	.artist span {
+		font-weight: 400;
+	}
+
+	.label p {
+		color: var(--ink);
 	}
 
 	.note {
