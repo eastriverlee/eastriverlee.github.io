@@ -1,0 +1,120 @@
+@font-face {
+	font-family: 'Cascadia Code';
+	src: url('/fonts/CascadiaCode.woff2') format('woff2');
+	font-weight: 200 700;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Cascadia Code';
+	src: url('/fonts/CascadiaCodeItalic.woff2') format('woff2');
+	font-weight: 200 700;
+	font-style: italic;
+	font-display: swap;
+}
+
+:root {
+	color-scheme: light dark;
+	--paper: #ffffff;
+	--ink: #121212;
+	--muted: #6b6b6b;
+	--rule: #d6d6d6;
+	--band: #121212;
+	--band-ink: #ffffff;
+	--blue: #1212cc;
+	--blue-ink: #00b4c8;
+	--red: #cc1212;
+	--link: #1212cc;
+	--measure: 72ch;
+	--gutter: clamp(16px, 4vw, 40px);
+	font-family: 'Cascadia Code', ui-monospace, 'SF Mono', Menlo, monospace;
+	font-size: 16px;
+	line-height: 1.55;
+	background: var(--paper);
+	color: var(--ink);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--paper: #0e0e10;
+		--ink: #e4e4e4;
+		--muted: #8a8a8a;
+		--rule: #2a2a2e;
+		--band: #000000;
+		--link: #8c8cff;
+	}
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	min-height: 100dvh;
+	background: var(--paper);
+	-webkit-font-smoothing: antialiased;
+}
+
+a {
+	color: var(--link);
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+	text-underline-offset: 0.2em;
+}
+
+:focus-visible {
+	outline: 2px solid var(--blue);
+	outline-offset: 2px;
+}
+
+h1,
+h2,
+h3 {
+	font-weight: 700;
+	line-height: 1.2;
+	margin: 0;
+}
+
+p {
+	margin: 0;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.section-label {
+	font-size: 0.8125rem;
+	font-weight: 400;
+	color: var(--muted);
+	text-transform: lowercase;
+	letter-spacing: 0.04em;
+	margin-bottom: 12px;
+}
+
+.section-label::before {
+	content: '// ';
+}
+
+.highlight {
+	background: var(--red);
+	color: #ffffff;
+	padding: 0 0.35em;
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
