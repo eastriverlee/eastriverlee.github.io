@@ -68,7 +68,7 @@ export const works: Work[] = [
 		name: 'omnlet',
 		kind: 'app',
 		since: 2026,
-		summary: 'practice words and generated sentences in many languages, with spaced review and offline voices.',
+		summary: 'every language, learnable from every language. open source, built by its community.',
 		url: '/omnlet/support/index.html',
 		isCurrent: true
 	},
