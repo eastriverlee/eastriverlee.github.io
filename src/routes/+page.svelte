@@ -58,14 +58,20 @@
 				{#each favorites as favorite (favorite.category)}
 					<div>
 						<dt>{favorite.category}</dt>
-						<dd>{favorite.items.join(', ')}</dd>
+						<dd>
+							{#each favorite.items as item, index (item.name)}{#if index > 0}{', '}{/if}{#if item.url}<a
+										href={item.url}
+										rel="external">{item.name}</a
+									>{:else}{item.name}{/if}{/each}
+						</dd>
 					</div>
 				{/each}
-				<div>
-					<dt>despise</dt>
-					<dd>{despised.join(', ')}</dd>
-				</div>
 			</dl>
+		</section>
+
+		<section aria-labelledby="despise-label">
+			<h2 id="despise-label" class="section-label">despise</h2>
+			<p>{despised.join(', ')}</p>
 		</section>
 
 		<section aria-labelledby="dreams-label">

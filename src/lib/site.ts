@@ -21,10 +21,19 @@ export type Link = {
 	url: string;
 };
 
+export type FavoriteItem = {
+	name: string;
+	url?: string;
+};
+
 export type Favorite = {
 	category: string;
-	items: string[];
+	items: FavoriteItem[];
 };
+
+function buildWikipediaURL(title: string, language = 'en'): string {
+	return `https://${language}.wikipedia.org/wiki/${encodeURIComponent(title.replaceAll(' ', '_'))}`;
+}
 
 export const siteTitle = '동녘 강의 오늘';
 export const siteDescription = "eastriver's space: code, type, art and writing by 이동하.";
@@ -138,39 +147,98 @@ export const links: Link[] = [
 export const favorites: Favorite[] = [
 	{
 		category: 'games',
-		items: ['exapunks', 'grim fandango', 'the curse of monkey island', 'thimbleweed park', 'ftl', 'sonic adventure', 'i love katamari']
+		items: [
+			{ name: 'exapunks', url: buildWikipediaURL('Exapunks') },
+			{ name: 'grim fandango', url: buildWikipediaURL('Grim Fandango') },
+			{ name: 'the curse of monkey island', url: buildWikipediaURL('The Curse of Monkey Island') },
+			{ name: 'thimbleweed park', url: buildWikipediaURL('Thimbleweed Park') },
+			{ name: 'ftl', url: buildWikipediaURL('FTL: Faster Than Light') },
+			{ name: 'sonic adventure', url: buildWikipediaURL('Sonic Adventure') },
+			{ name: 'i love katamari', url: buildWikipediaURL('I Love Katamari') }
+		]
 	},
 	{
 		category: 'music',
-		items: ['the beatles', 'sunny day service', 'goonamgwayeoridingstella', 'sunset rollercoaster', 'amy winehouse', 'bitgwasoeum', 'wedance']
+		items: [
+			{ name: 'the beatles', url: buildWikipediaURL('The Beatles') },
+			{ name: 'sunny day service', url: buildWikipediaURL('Sunny Day Service') },
+			{ name: 'goonamgwayeoridingstella', url: buildWikipediaURL('구남과여라이딩스텔라', 'ko') },
+			{ name: 'sunset rollercoaster', url: buildWikipediaURL('Sunset Rollercoaster') },
+			{ name: 'amy winehouse', url: buildWikipediaURL('Amy Winehouse') },
+			{ name: 'bitgwasoeum' },
+			{ name: 'wedance' }
+		]
 	},
 	{
 		category: 'writers',
-		items: ['solmoe park', 'romain gary', 'j. d. salinger', 'david van']
+		items: [
+			{ name: 'solmoe park', url: buildWikipediaURL('박솔뫼', 'ko') },
+			{ name: 'romain gary', url: buildWikipediaURL('Romain Gary') },
+			{ name: 'j. d. salinger', url: buildWikipediaURL('J. D. Salinger') },
+			{ name: 'david vann', url: buildWikipediaURL('David Vann (writer)') }
+		]
 	},
 	{
 		category: 'movies',
-		items: ['pulp fiction', 'face/off', 'whiplash', 'burning', 'parasite', 'garden state']
+		items: [
+			{ name: 'pulp fiction', url: buildWikipediaURL('Pulp Fiction') },
+			{ name: 'face/off', url: buildWikipediaURL('Face/Off') },
+			{ name: 'whiplash', url: buildWikipediaURL('Whiplash (2014 film)') },
+			{ name: 'burning', url: buildWikipediaURL('Burning (2018 film)') },
+			{ name: 'parasite', url: buildWikipediaURL('Parasite (2019 film)') },
+			{ name: 'garden state', url: buildWikipediaURL('Garden State (film)') },
+			{ name: 'matchstick men', url: buildWikipediaURL('Matchstick Men') }
+		]
 	},
 	{
 		category: 'animation',
-		items: ['futurama', "bob's burgers", 'the simpsons', 'rick and morty', 'star trek: lower decks', 'arcane', 'evangelion']
+		items: [
+			{ name: 'futurama', url: buildWikipediaURL('Futurama') },
+			{ name: "bob's burgers", url: buildWikipediaURL("Bob's Burgers") },
+			{ name: 'the simpsons', url: buildWikipediaURL('The Simpsons') },
+			{ name: 'rick and morty', url: buildWikipediaURL('Rick and Morty') },
+			{ name: 'star trek: lower decks', url: buildWikipediaURL('Star Trek: Lower Decks') },
+			{ name: 'arcane', url: buildWikipediaURL('Arcane (TV series)') },
+			{ name: 'evangelion', url: buildWikipediaURL('Neon Genesis Evangelion') }
+		]
 	},
 	{
 		category: 'shows',
-		items: ['mr. robot', 'friends', 'the office', 'my mister']
+		items: [
+			{ name: 'mr. robot', url: buildWikipediaURL('Mr. Robot') },
+			{ name: 'friends', url: buildWikipediaURL('Friends') },
+			{ name: 'the office', url: buildWikipediaURL('The Office (American TV series)') },
+			{ name: 'my mister', url: buildWikipediaURL('My Mister') }
+		]
 	},
 	{
 		category: 'sites',
-		items: ['khan academy', 'coursera', 'stack overflow', 'kyobobooks']
+		items: [
+			{ name: 'khan academy', url: buildWikipediaURL('Khan Academy') },
+			{ name: 'coursera', url: buildWikipediaURL('Coursera') },
+			{ name: 'stack overflow', url: buildWikipediaURL('Stack Overflow') },
+			{ name: 'kyobobooks', url: buildWikipediaURL('Kyobo Book Centre') }
+		]
 	},
 	{
 		category: 'languages',
-		items: ['swift', 'c', 'go', 'cweed']
+		items: [
+			{ name: 'swift', url: buildWikipediaURL('Swift (programming language)') },
+			{ name: 'c', url: buildWikipediaURL('C (programming language)') },
+			{ name: 'go', url: buildWikipediaURL('Go (programming language)') },
+			{ name: 'cweed' }
+		]
 	},
 	{
 		category: 'brands',
-		items: ['apple', 'lego', 'zsa', 'mozilla', "o'reilly", 'no starch press']
+		items: [
+			{ name: 'apple', url: buildWikipediaURL('Apple Inc.') },
+			{ name: 'lego', url: buildWikipediaURL('Lego') },
+			{ name: 'zsa' },
+			{ name: 'mozilla', url: buildWikipediaURL('Mozilla') },
+			{ name: "o'reilly", url: buildWikipediaURL("O'Reilly Media") },
+			{ name: 'no starch press', url: buildWikipediaURL('No Starch Press') }
+		]
 	}
 ];
 
