@@ -18,7 +18,7 @@
 					{work.name}
 				{/if}
 			</span>
-			<span class="since">{work.since ?? ''}</span>
+			<span class="since">{work.since ?? ''}{work.isOngoing ? '–' : ''}</span>
 			{#if work.summary}
 				<span class="summary">{work.summary}</span>
 			{/if}

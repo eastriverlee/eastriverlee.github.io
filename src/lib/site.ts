@@ -7,6 +7,7 @@ export type Work = {
 	name: string;
 	kind: WorkKind;
 	since?: number;
+	isOngoing?: boolean;
 	summary?: string;
 	url?: string;
 	isCurrent?: boolean;
@@ -61,6 +62,7 @@ export const works: Work[] = [
 		name: 'cweed',
 		kind: 'language',
 		since: 2022,
+		isOngoing: true,
 		summary: "a programming language i'm making.",
 		isCurrent: true
 	},
@@ -68,8 +70,8 @@ export const works: Work[] = [
 		name: 'omnlet',
 		kind: 'app',
 		since: 2026,
+		isOngoing: true,
 		summary: 'every language, learnable from every language. open source, built by its community.',
-		url: '/omnlet/support/index.html',
 		isCurrent: true
 	},
 	{
