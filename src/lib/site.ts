@@ -280,7 +280,7 @@ export const stickers: Sticker[] = [
 	{ name: 'khan academy', url: buildWikipediaURL('Khan Academy'), imageURL: '/images/stickers/khan-academy.webp', width: 441, height: 90, isDieCut: true },
 	{ name: 'burning', url: buildWikipediaURL('Burning (2018 film)'), imageURL: '/images/stickers/burning.webp', width: 257, height: 365 },
 	{ name: 'legend of a suicide', url: buildWikipediaURL('David Vann (writer)'), imageURL: '/images/stickers/legend-of-a-suicide.webp', width: 234, height: 364 },
-	{ name: 'rick and morty', url: buildWikipediaURL('Rick and Morty'), imageURL: '/images/stickers/rick-and-morty.webp', width: 181, height: 409, isDieCut: true },
+	{ name: 'rick and morty', url: buildWikipediaURL('Rick and Morty'), imageURL: '/images/stickers/rick-and-morty.webp', width: 323, height: 421, isDieCut: true },
 	{ name: 'cweed', url: '/works', imageURL: '/images/stickers/cweed.webp', width: 166, height: 220, isDieCut: true },
 	{ name: 'les racines du ciel', url: buildWikipediaURL('Les Racines du ciel', 'fr'), imageURL: '/images/stickers/the-roots-of-heaven.webp', width: 222, height: 364 },
 	{ name: 'thimbleweed park', url: buildWikipediaURL('Thimbleweed Park'), imageURL: '/images/stickers/thimbleweed-park.webp', width: 364, height: 185 },
