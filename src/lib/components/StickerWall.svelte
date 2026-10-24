@@ -59,8 +59,7 @@
 
 	li:hover,
 	li:focus-within {
-		z-index: 20 !important;
-		transform: translateY(calc(var(--lift) * var(--scale))) rotate(0deg) scale(1.08);
+		transform: translateY(calc(var(--lift) * var(--scale))) rotate(var(--tilt)) scale(1.03);
 	}
 
 	@media (prefers-reduced-motion: reduce) {
@@ -79,26 +78,11 @@
 		display: block;
 		width: 100%;
 		height: auto;
-		box-shadow:
-			0 1px 2px rgb(0 0 0 / 0.3),
-			0 8px 18px rgb(0 0 0 / 0.18);
+		filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.35)) drop-shadow(0 6px 10px rgb(0 0 0 / 0.16));
 	}
 
-	li:not(.die-cut)::before {
-		content: '';
-		position: absolute;
-		top: -9px;
-		left: 50%;
-		z-index: 1;
-		width: 46%;
-		height: 20px;
-		background: rgb(255 255 255 / 0.55);
-		box-shadow: 0 1px 2px rgb(0 0 0 / 0.15);
-		transform: translateX(-50%) rotate(calc(var(--tilt) * -0.8));
-	}
 
 	.die-cut img {
-		box-shadow: none;
-		filter: drop-shadow(0 2px 3px rgb(0 0 0 / 0.3));
+		filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.3)) drop-shadow(0 2px 4px rgb(0 0 0 / 0.14));
 	}
 </style>
