@@ -6,19 +6,47 @@
 	};
 
 	type Drag = { startX: number; startTurn: number };
+	type Pose = { tiltX: number; tiltY: number; turn: number };
 
 	let { frontURL, backURL, label }: Props = $props();
 
 	const maximumTiltInDegrees = 14;
+	const easingPerFrame = 0.16;
+	const settledDegrees = 0.01;
 	const edgeSlices = [1, 2, 3, 4, 5];
 
 	let card: HTMLDivElement;
-	let turn = $state(0);
-	let drag: Drag | null = $state(null);
-	let tilt = $state({ x: 0, y: 0 });
+	let drag: Drag | null = null;
+	let target: Pose = { tiltX: 0, tiltY: 0, turn: 0 };
+	let pose: Pose = $state({ tiltX: 0, tiltY: 0, turn: 0 });
+	let animationFrame = 0;
+
+	function moveToward(next: Partial<Pose>) {
+		target = { ...target, ...next };
+		if (!animationFrame) animationFrame = requestAnimationFrame(stepPose);
+	}
+
+	function stepPose() {
+		const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		const easing = isReduced ? 1 : easingPerFrame;
+		pose = {
+			tiltX: pose.tiltX + (target.tiltX - pose.tiltX) * easing,
+			tiltY: pose.tiltY + (target.tiltY - pose.tiltY) * easing,
+			turn: pose.turn + (target.turn - pose.turn) * easing
+		};
+		animationFrame = hasSettled() ? 0 : requestAnimationFrame(stepPose);
+	}
+
+	function hasSettled() {
+		return (
+			Math.abs(target.tiltX - pose.tiltX) < settledDegrees &&
+			Math.abs(target.tiltY - pose.tiltY) < settledDegrees &&
+			Math.abs(target.turn - pose.turn) < settledDegrees
+		);
+	}
 
 	function startDrag(event: PointerEvent) {
-		drag = { startX: event.clientX, startTurn: turn };
+		drag = { startX: event.clientX, startTurn: target.turn };
 		card.setPointerCapture(event.pointerId);
 	}
 
@@ -32,7 +60,7 @@
 
 	function turnWithDrag(event: PointerEvent, activeDrag: Drag) {
 		const width = card.getBoundingClientRect().width;
-		turn = activeDrag.startTurn + ((event.clientX - activeDrag.startX) / width) * 180;
+		moveToward({ turn: activeDrag.startTurn + ((event.clientX - activeDrag.startX) / width) * 180 });
 	}
 
 	function tiltTowardPointer(event: PointerEvent) {
@@ -41,17 +69,17 @@
 		const bounds = card.getBoundingClientRect();
 		const horizontal = ((event.clientX - bounds.left) / bounds.width) * 2 - 1;
 		const vertical = ((event.clientY - bounds.top) / bounds.height) * 2 - 1;
-		tilt = { x: -vertical * maximumTiltInDegrees, y: horizontal * maximumTiltInDegrees };
+		moveToward({ tiltX: -vertical * maximumTiltInDegrees, tiltY: horizontal * maximumTiltInDegrees });
 	}
 
 	function endDrag() {
 		if (!drag) return;
-		turn = Math.round(turn / 180) * 180;
+		moveToward({ turn: Math.round(target.turn / 180) * 180 });
 		drag = null;
 	}
 
 	function resetTilt() {
-		tilt = { x: 0, y: 0 };
+		moveToward({ tiltX: 0, tiltY: 0 });
 	}
 </script>
 
@@ -65,11 +93,10 @@
 	onpointerup={endDrag}
 	onpointercancel={endDrag}
 	onpointerleave={resetTilt}
-	style:--tilt-x="{tilt.x}deg"
-	style:--turn="{tilt.y + turn}deg"
-	style:--sheen="{50 - tilt.y * 4}%"
+	style:--tilt-x="{pose.tiltX}deg"
+	style:--turn="{pose.tiltY + pose.turn}deg"
 >
-	<span class="body" class:is-dragging={drag !== null}>
+	<span class="body">
 		<span class="face front" style:background-image="url({frontURL})"></span>
 		{#each edgeSlices as slice (slice)}
 			<span class="slice" class:is-middle={slice === 3} style:--slice={slice}></span>
@@ -102,11 +129,6 @@
 		height: 100%;
 		transform-style: preserve-3d;
 		transform: rotateX(var(--tilt-x)) rotateY(var(--turn));
-		transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
-	}
-
-	.body.is-dragging {
-		transition: none;
 	}
 
 	.face,
@@ -119,23 +141,6 @@
 	.face {
 		background: center / 100% 100% no-repeat;
 		backface-visibility: hidden;
-		overflow: hidden;
-	}
-
-	.face::after {
-		content: '';
-		position: absolute;
-		inset: 0;
-		background: linear-gradient(
-			115deg,
-			transparent 30%,
-			rgb(255 255 255 / 0.28) 48%,
-			transparent 62%
-		);
-		background-size: 250% 100%;
-		background-position: var(--sheen) 0;
-		mix-blend-mode: soft-light;
-		pointer-events: none;
 	}
 
 	.front {
@@ -149,17 +154,11 @@
 	}
 
 	.slice {
-		background: #dcdfe4;
+		background: #8db5de;
 		transform: translateZ(calc(var(--thickness) / 2 - var(--slice) * var(--thickness) / 6));
 	}
 
 	.slice.is-middle {
 		box-shadow: 0 10px 24px rgb(0 0 0 / 0.18);
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.body {
-			transition: none;
-		}
 	}
 </style>
