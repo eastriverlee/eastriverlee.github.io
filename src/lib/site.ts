@@ -45,7 +45,7 @@ function buildWikipediaURL(title: string, language = 'en'): string {
 }
 
 export const siteTitle = '동녘 강의 오늘';
-export const siteDescription = "eastriver's space: code, type, art and writing by 이동하.";
+export const siteDescription = 'code, type, art and writing by eastriver (이동하).';
 
 export const kindLabels: Record<WorkKind, string> = {
 	language: 'languages',
