@@ -161,12 +161,13 @@ export const favorites: Favorite[] = [
 		category: 'music',
 		items: [
 			{ name: 'the beatles', url: buildWikipediaURL('The Beatles') },
-			{ name: 'sunny day service', url: buildWikipediaURL('Sunny Day Service') },
 			{ name: 'goonamgwayeoridingstella', url: buildWikipediaURL('구남과여라이딩스텔라', 'ko') },
-			{ name: 'sunset rollercoaster', url: buildWikipediaURL('Sunset Rollercoaster') },
 			{ name: 'amy winehouse', url: buildWikipediaURL('Amy Winehouse') },
 			{ name: 'bitgwasoeum' },
-			{ name: 'wedance' }
+			{ name: 'wedance' },
+			{ name: 'the symposium', url: buildWikipediaURL('The Symposium (band)') },
+			{ name: 'mitsume', url: buildWikipediaURL('ミツメ', 'ja') },
+			{ name: 'remi wolf', url: buildWikipediaURL('Remi Wolf') }
 		]
 	},
 	{
