@@ -135,7 +135,7 @@ export const works: Work[] = [
 		name: '여울체 yeoulche',
 		kind: 'font',
 		summary:
-			'a duospaced sans-serif programming typeface inspired by galmuri9, which was in turn inspired by the fonts of the nintendo ds and its games. drawn from scratch, it takes its cues from bitmap fonts so code stays legible even at small body sizes.',
+			'a duospaced sans-serif programming typeface inspired by <a href="https://github.com/quiple/galmuri" rel="external">galmuri9</a>. drawn from scratch, it takes its cues from bitmap fonts so code stays legible even at small body sizes.',
 		specimenSVG: yeoulcheSpecimen
 	},
 	{
