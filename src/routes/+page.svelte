@@ -179,6 +179,10 @@
 		.hero {
 			grid-template-columns: 1fr 340px;
 		}
+
+		h1 {
+			color: var(--white);
+		}
 	}
 
 	.columns {
