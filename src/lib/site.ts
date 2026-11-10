@@ -119,14 +119,14 @@ export const works: Work[] = [
 	{
 		name: '셈틀체 semteulche',
 		kind: 'font',
-		summary: 'a monospaced sans-serif hangul typeface, a spiritual offspring of jetbrains mono.',
+		summary: 'a duospaced sans-serif hangul typeface, a spiritual offspring of jetbrains mono.',
 		url: 'https://eastriverlee.itch.io/semteulche',
 		specimenSVG: semteulcheSpecimen
 	},
 	{
 		name: '헤살체 hesalche',
 		kind: 'font',
-		summary: 'a monospaced serif hangul typeface. 헤살 is an old korean word for meddling, close to hacking.',
+		summary: 'a duospaced serif hangul typeface. 헤살 is an old korean word for meddling, close to hacking.',
 		url: 'https://eastriverlee.itch.io/hesalche',
 		specimenSVG: hesalcheSpecimen
 	},
