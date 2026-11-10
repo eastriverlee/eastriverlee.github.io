@@ -36,16 +36,23 @@
 	<div class="grid">
 		{#each fonts as font (font.name)}
 			<article>
-				<a class="specimen" href={font.url} rel="external" aria-label={font.name}>
-					{@html font.specimenSVG}
-				</a>
-				<h3><a href={font.url} rel="external">{font.name}</a></h3>
+				{#if font.url}
+					<a class="specimen" href={font.url} rel="external" aria-label={font.name}>
+						{@html font.specimenSVG}
+					</a>
+					<h3><a href={font.url} rel="external">{font.name}</a></h3>
+				{:else}
+					<div class="specimen" aria-hidden="true">
+						{@html font.specimenSVG}
+					</div>
+					<h3>{font.name}</h3>
+				{/if}
 				<p>{font.summary}</p>
 			</article>
 		{/each}
 	</div>
 	<p class="note">
-		both fonts are on <a href="https://eastriverlee.itch.io/semteulche-hesalche" rel="external">itch.io as a set</a>.
+		semteulche and hesalche are on <a href="https://eastriverlee.itch.io/semteulche-hesalche" rel="external">itch.io as a set</a>.
 	</p>
 </section>
 
@@ -106,7 +113,7 @@
 		background: none;
 	}
 
-	.specimen:hover {
+	a.specimen:hover {
 		border-color: var(--blue);
 		color: var(--blue);
 	}

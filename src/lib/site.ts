@@ -1,5 +1,6 @@
 import semteulcheSpecimen from '$lib/content/specimens/semteulche.svg?raw';
 import hesalcheSpecimen from '$lib/content/specimens/hesalche.svg?raw';
+import yeoulcheSpecimen from '$lib/content/specimens/yeoulche.svg?raw';
 
 export type WorkKind = 'language' | 'app' | 'tool' | 'library' | 'font' | 'film';
 
@@ -129,6 +130,13 @@ export const works: Work[] = [
 		summary: 'a duospaced serif hangul typeface. 헤살 is an old korean word for meddling, close to hacking.',
 		url: 'https://eastriverlee.itch.io/hesalche',
 		specimenSVG: hesalcheSpecimen
+	},
+	{
+		name: '여울체 yeoulche',
+		kind: 'font',
+		summary:
+			'a duospaced sans-serif programming typeface inspired by galmuri9, which was in turn inspired by the fonts of the nintendo ds and its games. drawn from scratch, it takes its cues from bitmap fonts so code stays legible even at small body sizes.',
+		specimenSVG: yeoulcheSpecimen
 	},
 	{
 		name: '(an rgb display of)(a video of)the weight of goldilocks',
