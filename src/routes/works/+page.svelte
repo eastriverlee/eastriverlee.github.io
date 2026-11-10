@@ -47,7 +47,7 @@
 					</div>
 					<h3>{font.name}</h3>
 				{/if}
-				<p>{font.summary}</p>
+				<p>{@html font.summary}</p>
 			</article>
 		{/each}
 	</div>
